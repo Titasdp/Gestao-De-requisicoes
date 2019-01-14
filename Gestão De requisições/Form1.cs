@@ -83,6 +83,7 @@ namespace Gestão_De_requisições
                             utilizador.utilizador = fill[1];
                             Program.utilname = utilizador.utilizador;//Tranfera o nome do utilizador para uma variavel "universal"
                             utilizador.email = fill[2];
+                            Program.utilemail = utilizador.email;//Tranfera email do utilizador para uma variavel "universal"
                             utilizador.password = fill[3];
                             utilizador.tipo = fill[4];
 
@@ -99,7 +100,7 @@ namespace Gestão_De_requisições
                         this.Hide();
 
                     }
-                    else if ((utilizador.tipo).TrimEnd() == "segurança")
+                    else if ((utilizador.tipo).TrimEnd() == "seguranca")
                     {
                         Form f4 = new Sfirst();
                         f4.Show();

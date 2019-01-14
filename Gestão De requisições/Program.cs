@@ -9,6 +9,7 @@ namespace Gestão_De_requisições
     static class Program
     {
         public static string utilname;
+        public static string utilemail;
  
         /// <summary>
         /// The main entry point for the application.

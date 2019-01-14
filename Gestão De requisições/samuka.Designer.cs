@@ -35,6 +35,7 @@
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -61,6 +62,8 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -70,9 +73,7 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -109,17 +110,18 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.button5);
             this.panel6.Controls.Add(this.button6);
             this.panel6.Controls.Add(this.textBox9);
             this.panel6.Location = new System.Drawing.Point(14, 289);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(741, 75);
+            this.panel6.Size = new System.Drawing.Size(741, 102);
             this.panel6.TabIndex = 3;
             // 
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(614, 19);
+            this.button6.Location = new System.Drawing.Point(613, 19);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(114, 30);
             this.button6.TabIndex = 3;
@@ -160,6 +162,17 @@
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Requesitar";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Arial Narrow", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(570, 166);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(179, 85);
+            this.button4.TabIndex = 26;
+            this.button4.Text = "Submeter Formulário ";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button1
             // 
@@ -442,6 +455,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Devolução ";
             // 
+            // comboBox3
+            // 
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(12, 295);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(168, 30);
+            this.comboBox3.TabIndex = 19;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(8, 270);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(94, 22);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "Por devolver:";
+            // 
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(12, 150);
@@ -526,33 +556,15 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button4
+            // button5
             // 
-            this.button4.Font = new System.Drawing.Font("Arial Narrow", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(570, 166);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(179, 85);
-            this.button4.TabIndex = 26;
-            this.button4.Text = "Submeter Formulário ";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(8, 270);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(94, 22);
-            this.label15.TabIndex = 18;
-            this.label15.Text = "Por devolver:";
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(12, 295);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(168, 30);
-            this.comboBox3.TabIndex = 19;
+            this.button5.Location = new System.Drawing.Point(616, 60);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(111, 30);
+            this.button5.TabIndex = 4;
+            this.button5.Text = "Visualizado";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // samuka
             // 
@@ -630,5 +642,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button button5;
     }
 }

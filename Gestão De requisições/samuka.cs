@@ -14,7 +14,9 @@ namespace Gestão_De_requisições
     public partial class samuka : Form
     {
 
-        int a = 0;//Varaivel contadora que permite escolher a devolucao pretendida
+        chat mes = new chat();
+
+        int a = 0;//Varaivel contadora para contar o numero de faturas
         bool accept = false;
         bool permicao = false;
         bool permicao2 = false;
@@ -68,8 +70,8 @@ namespace Gestão_De_requisições
 
             mes.utilizador = Program.utilname;
             mes.conversa = textBox9.Text;
-            mes.email = utilizador.email;
-            mes.para = "segurança ";
+            mes.email = Program.utilemail;
+            mes.para = "seguranca";
 
 
             linha = (mes.utilizador + ";" + mes.email + ";" + mes.conversa + ";" + mes.para);
@@ -99,12 +101,16 @@ namespace Gestão_De_requisições
 
         private void samuka_Load(object sender, EventArgs e)
         {
+
+
+            add_pordev();
+
+
             StreamReader sr;
-
-
+            actualizarchat();
             //Retira as salas do ficheiro salas e acrescenta na comboxbox das salas
 
-            
+
 
             sr = File.OpenText(salas);
             string linha;
@@ -126,7 +132,41 @@ namespace Gestão_De_requisições
                 comboBox2.Items.Add(fill[1]);
             }
             sr.Close();
+
+            //Acrescenta as mensagens que sao dirigidas ao utilizador em concreto 
+
         }
+
+
+        public void add_pordev() {
+
+            string linha;
+            StreamReader sr = File.OpenText(requisicoes);
+            while ((linha = sr.ReadLine())!=null)
+            {
+
+                string[] del = linha.Split(';');//Guarda as informacoes da delivery/ entrega
+
+                if (del[0]==Program.utilname && del.Length<=5)
+                {
+                    comboBox3.Items.Add(del[3] + "-" + del[4]);
+                    permicao = true;
+                }
+
+            
+            }
+            sr.Close();
+
+        }
+
+
+
+
+
+
+
+
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -314,6 +354,13 @@ namespace Gestão_De_requisições
                 comboBox3.SelectedItem = null;
                 permicao2 = false;
 
+
+                //Conta os itens da combobox caso essa estiver vazia ele impede o utilizador de "preencher" o formulário da entrega
+                if (comboBox3.Items.Count == 0)
+                {
+                    permicao = false;
+                }
+
             }
 
 
@@ -344,12 +391,11 @@ namespace Gestão_De_requisições
                     sw.WriteLine(linhaglobal);
                     sw.Close();
                 }
-                else
-                {
-                    MessageBox.Show("O ficheiro não existe", "Ficheiro inexistente", MessageBoxButtons.OK);//Para ser retirado 
-                }
+
+
+                MessageBox.Show("O formulário foi submetido com sucesso", "Formulário Submetido", MessageBoxButtons.OK);
                 permicao = true;
-                accept = false;//impede fazer uma nova submicao 
+                accept = false;//impede fazer uma nova submicao sem preencher a outra
 
                 //obriga o utilizador a preencher de novo 
                 textBox2.Text = "";
@@ -371,13 +417,168 @@ namespace Gestão_De_requisições
 
         }
 
+        //funcao actualizadora de chat
+        public void actualizarchat()
+        {
 
-      
-      
+            chat mes = new chat();
+
+
+
+            string linha;
+            StreamReader sw = File.OpenText(conversa);
+
+            while ((linha = sw.ReadLine()) != null)
+            {
+                string[] fill = linha.Split(';');
+
+                if (fill[3] == Program.utilname && fill.Length < 6 && fill[4]==Program.utilemail)
+                {
+
+                    mes.utilizador = fill[0];
+                    mes.conversa = fill[2];
+
+
+                    string linha2 = mes.utilizador + ":" + mes.conversa;
+
+                    listBox1.Items.Add(linha2);
+                }
+
+            }
+            sw.Close();
+        }
+
+
 
         private void textBox12_TextChanged(object sender, EventArgs e)
         {
-            textBox2.Text = a.ToString();
+            
         }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+
+            if (listBox1.SelectedItem==null)
+            {
+                MessageBox.Show("E é necessário  selecionar a mensagem que deseja selecionar", "Visualizar", MessageBoxButtons.OK , MessageBoxIcon.Exclamation);
+            }
+            else if (listBox1.SelectedItem.ToString().Contains("Eu"))
+            {
+                MessageBox.Show("Não pode responder às suas próprias mensagens", "Escolha Impossível", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            else
+            {
+
+                DialogResult result = MessageBox.Show("Confirma o seu acto de 'visualizar'? Depois de 'vizualizada' essa mensagem  desaparecerá da sua vistá de utilizador e para visualiza-la de novo deve consultar o serviço de administração "," Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+
+                if (result ==DialogResult.Yes)
+                {
+                    string[] responder = listBox1.SelectedItem.ToString().Split(':');
+
+
+
+                    string alterar = "";
+                    string comparacao = "";
+
+
+
+                    string linha;//linha como esta presente na actualidade  
+                    string linha2;
+
+                    //Abre ficheiro para retirar a mensagem e o nome do utilizador para colocar numa nova string que vai ser alterado no ficheiro 
+                    StreamReader sr = File.OpenText(conversa);
+                    while ((linha = sr.ReadLine()) != null)
+                    {
+                        string[] fill = linha.Split(';');
+
+                        if (fill[0] == responder[0] && fill[2] == responder[1] && fill.Length <= 5)
+                        {
+                            alterar = linha + ";" + "V"; // Alteracao para submeter para o ficheiro actualizado  
+                            comparacao = linha;
+
+                        }
+
+                    }
+                    sr.Close();
+
+
+
+
+                    //Cria o ficheiro de apoio impedindo a perda de informacao ao eliminar  
+
+                    StreamWriter sw = File.CreateText(apoio);
+                    sw.Close();
+
+
+
+
+                    sr = File.OpenText(conversa);
+                    while ((linha2 = sr.ReadLine()) != null)
+                    {
+                        //ESCREVE NO OURTO FICHEIRO
+                        StreamWriter sw2 = File.AppendText(apoio);
+
+                        if (comparacao == linha2)//caso a linha encontrada for igual a linha escrita no ficheiro
+                        {
+                            sw2.WriteLine(alterar);//passa para o outro ficheiro a alteracao  sendo que impede com que a linha seja escrita 
+                            sw2.Close();
+                        }
+                        else
+                        {
+                            sw2.WriteLine(linha2);//caso nao for encontrada algo igual ele escreve a linha como esta escrita
+                            sw2.Close();
+                        }
+
+                    }
+                    sr.Close();
+
+
+                    File.Delete(conversa);//Elimina o ficheiro anterior para permitir refazelo do zero 
+                    StreamWriter sw3 = File.CreateText(conversa);//Recria o ficheiro para ser tranferido de novo os dados atualizados 
+                    sw3.Close();
+
+                    string linharecr;//escreve de novo no ficheiro actualizado
+
+                    sr = File.OpenText(apoio);
+                    while ((linharecr = sr.ReadLine()) != null)
+                    {
+                        //Devolve os dados para o ficheiro reconstruido 
+                        StreamWriter sw2 = File.AppendText(conversa);
+                        sw2.WriteLine(linharecr);
+                        sw2.Close();
+
+
+                    }
+                    sr.Close();
+
+                    File.Delete(apoio);//elimina o ficheiro de apoio }
+
+
+
+                    MessageBox.Show("O processo foi realizado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    actualizarchat();//Actualiza automaticamente a listbox
+
+                }
+                else
+                {
+                    MessageBox.Show("O processo foi cancelado", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+    }
     }
     }
