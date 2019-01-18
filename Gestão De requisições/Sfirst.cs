@@ -58,6 +58,33 @@ namespace Gestão_De_requisições
 
             actualizarchat();//Chama a funcao que acrescenta as mensagens direcionadas aos seguranças na listbox 
 
+            StreamReader sr;
+           
+            //Retira as salas do ficheiro salas e acrescenta na comboxbox das salas
+
+
+
+            sr = File.OpenText(salas);
+            string linha;
+            while ((linha = sr.ReadLine()) != null)    //OBS: FALTA DE CONSTRUCAO 
+            {
+                comboBox1.Items.Add(linha);
+            }
+            sr.Close();
+
+
+            //Retira os objectos do ficheiro dos objectos e acrescenta na combobox dos objectos
+            sr = File.OpenText(objectos);
+            string linha2;
+            while ((linha2 = sr.ReadLine()) != null) //FALTA DE CONSTRUCAO 
+            {
+
+                string[] fill = linha2.Split(';');
+
+                comboBox2.Items.Add(fill[1]);
+            }
+            sr.Close();
+
         }
 
 
@@ -277,6 +304,331 @@ namespace Gestão_De_requisições
         private void textBox2_Click(object sender, EventArgs e)
         {
             textBox2.Text = "";
+        }
+
+
+
+
+        //consulta
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            dataGridView1.Rows.Clear();
+
+            por_salas_e_objectos();
+
+
+        }
+
+        //Filtro por salas e objetos 
+        public void por_salas_e_objectos() {
+
+
+
+
+
+            int lin = 0;
+
+            requisitar req = new requisitar();
+
+            string linha = "";
+
+            //abre o ficheiro para adicionar à datagridview os ficheiros existents
+            StreamReader sr;
+
+
+            if (comboBox2.SelectedItem!=null && comboBox1.SelectedItem!=null)
+            {
+
+
+                sr = File.OpenText(requisicoes);
+
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    
+
+                    string[] fill = linha.Split(';');
+
+                    if (comboBox1.SelectedItem.ToString() == fill[4] && fill[3] == comboBox2.SelectedItem.ToString())
+                    {
+                        dataGridView1.Rows.Add(1);
+                        if (fill.Length <= 5)
+                        {
+                            req.docente = fill[0];
+                            req.hora = fill[1];
+                            req.data = fill[2];
+                            req.objeto = fill[3];
+                            req.sala = fill[4];
+                            req.horaentre = "";
+                            req.dataentre = "";
+                        }
+                        else if (fill.Length >= 7)
+                        {
+                            req.docente = fill[0];
+                            req.hora = fill[1];
+                            req.data = fill[2];
+                            req.objeto = fill[3];
+                            req.sala = fill[4];
+                            req.horaentre = fill[5];
+                            req.dataentre = fill[6];
+
+                        }
+                        //Adiciona à datagridview
+                        dataGridView1[0, lin].Value = req.docente;
+                        dataGridView1[1, lin].Value = req.hora;
+                        dataGridView1[2, lin].Value = req.data;
+                        dataGridView1[3, lin].Value = req.objeto;
+                        dataGridView1[4, lin].Value = req.sala;
+                        dataGridView1[5, lin].Value = req.horaentre;
+                        dataGridView1[6, lin].Value = req.dataentre;
+
+                        lin++;
+                    }
+
+                }
+                sr.Close();
+
+
+
+
+
+
+            }
+            else if (comboBox1.SelectedItem!=null &&comboBox2.SelectedItem==null)
+            {
+
+
+
+                sr = File.OpenText(requisicoes);
+
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    dataGridView1.Rows.Add(1);
+
+                    string[] fill = linha.Split(';');
+
+                    if (comboBox1.SelectedItem.ToString() == fill[4])
+                    {
+
+                        if (fill.Length <= 5)
+                        {
+                            req.docente = fill[0];
+                            req.hora = fill[1];
+                            req.data = fill[2];
+                            req.objeto = fill[3];
+                            req.sala = fill[4];
+                            req.horaentre = "";
+                            req.dataentre = "";
+                        }
+                        else if (fill.Length >= 7)
+                        {
+                            req.docente = fill[0];
+                            req.hora = fill[1];
+                            req.data = fill[2];
+                            req.objeto = fill[3];
+                            req.sala = fill[4];
+                            req.horaentre = fill[5];
+                            req.dataentre = fill[6];
+
+
+                        }
+                        //Adiciona à datagridview
+                        dataGridView1[0, lin].Value = req.docente;
+                        dataGridView1[1, lin].Value = req.hora;
+                        dataGridView1[2, lin].Value = req.data;
+                        dataGridView1[3, lin].Value = req.objeto;
+                        dataGridView1[4, lin].Value = req.sala;
+                        dataGridView1[5, lin].Value = req.horaentre;
+                        dataGridView1[6, lin].Value = req.dataentre;
+
+
+
+
+
+                        lin++;
+                    }
+
+                    
+                }
+                sr.Close();
+
+            }
+
+            else if (comboBox1.SelectedItem == null && comboBox2.SelectedItem != null)
+            {
+
+
+
+                sr = File.OpenText(requisicoes);
+
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    dataGridView1.Rows.Add(1);
+
+                    string[] fill = linha.Split(';');
+
+                    if (comboBox2.SelectedItem.ToString() == fill[3])
+                    {
+
+                        if (fill.Length <= 5)
+                        {
+                            req.docente = fill[0];
+                            req.hora = fill[1];
+                            req.data = fill[2];
+                            req.objeto = fill[3];
+                            req.sala = fill[4];
+                            req.horaentre = "";
+                            req.dataentre = "";
+                        }
+                        else if (fill.Length >= 7)
+                        {
+                            req.docente = fill[0];
+                            req.hora = fill[1];
+                            req.data = fill[2];
+                            req.objeto = fill[3];
+                            req.sala = fill[4];
+                            req.horaentre = fill[5];
+                            req.dataentre = fill[6];
+
+                        }
+                        //Adiciona à datagridview
+                        dataGridView1[0, lin].Value = req.docente;
+                        dataGridView1[1, lin].Value = req.hora;
+                        dataGridView1[2, lin].Value = req.data;
+                        dataGridView1[3, lin].Value = req.objeto;
+                        dataGridView1[4, lin].Value = req.sala;
+                        dataGridView1[5, lin].Value = req.horaentre;
+                        dataGridView1[6, lin].Value = req.dataentre;
+
+
+
+
+
+                        lin++;
+                    }
+
+                    
+                }
+                sr.Close();
+
+
+
+
+
+
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public void tudo() {
+
+            int lin = 0;
+
+            requisitar req = new requisitar();
+
+            string linha = "";
+
+            //abre o ficheiro para adicionar à datagridview os ficheiros existents
+            StreamReader sr = File.OpenText(requisicoes);
+
+            while ((linha = sr.ReadLine()) != null)
+            {
+                dataGridView1.Rows.Add(1);
+
+                string[] fill = linha.Split(';');
+
+
+                if (fill.Length <= 5)
+                {
+                    req.docente = fill[0];
+                    req.hora = fill[1];
+                    req.data = fill[2];
+                    req.objeto = fill[3];
+                    req.sala = fill[4];
+                    req.horaentre = "";
+                    req.dataentre = "";
+                }
+                else if (fill.Length >= 7)
+                {
+                    req.docente = fill[0];
+                    req.hora = fill[1];
+                    req.data = fill[2];
+                    req.objeto = fill[3];
+                    req.sala = fill[4];
+                    req.horaentre = fill[5];
+                    req.dataentre = fill[6];
+
+                }
+
+
+
+
+                //Adiciona à datagridview
+                dataGridView1[0, lin].Value = req.docente;
+                dataGridView1[1, lin].Value = req.hora;
+                dataGridView1[2, lin].Value = req.data;
+                dataGridView1[3, lin].Value = req.objeto;
+                dataGridView1[4, lin].Value = req.sala;
+                dataGridView1[5, lin].Value = req.horaentre;
+                dataGridView1[6, lin].Value = req.dataentre;
+
+
+
+
+
+                lin++;
+            }
+            sr.Close();
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

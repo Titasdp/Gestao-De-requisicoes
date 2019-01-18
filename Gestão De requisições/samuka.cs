@@ -103,7 +103,7 @@ namespace Gestão_De_requisições
         {
 
 
-            add_pordev();
+            add_pordev();//Adiciona os elementos que nao foram devolvidos que deveram ser devolvidos 
 
 
             StreamReader sr;
@@ -580,5 +580,12 @@ namespace Gestão_De_requisições
 
 
     }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+
+        }
     }
     }

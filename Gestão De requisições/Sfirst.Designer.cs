@@ -113,6 +113,7 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Consultar Hístórico De Requisições ";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // panel2
             // 
@@ -203,6 +204,7 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "Consultar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox4
             // 
