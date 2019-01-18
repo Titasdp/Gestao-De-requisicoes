@@ -291,14 +291,6 @@ namespace Gestão_De_requisições
 
 
             }
-
-
-
-
-
-
-
-
         }
 
         private void textBox2_Click(object sender, EventArgs e)
