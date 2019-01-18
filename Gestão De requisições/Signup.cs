@@ -103,6 +103,12 @@ namespace Gestão_De_requisições
 
 
                     string mail = utilizador.email;
+                    string nomeutilizador = utilizador.utilizador;
+
+                    if ((usernameval(nomeutilizador)!=true))
+                    {
+
+                    }
 
                     if (emailval(mail)!=true)
                     {
@@ -179,6 +185,42 @@ namespace Gestão_De_requisições
                  
                 }
              
+
+            }
+            sr.Close();
+            return true;
+        }
+
+
+
+        public bool usernameval(string nomeutilizador)
+        {
+
+            StreamReader sr = File.OpenText(nome);
+            string linha;
+
+
+            while ((linha = sr.ReadLine()) != null)
+            {
+
+                string[] fill = linha.Split(';');
+
+
+                if (fill.Count() < 2)//confirma se e possivel criar contas  sendo que esse pode conter um elemento invisivel 
+                {
+                    sr.Close();
+                    return true;
+
+                }
+
+
+                else if (nomeutilizador == fill[1])
+                {
+                    sr.Close();
+                    return false;
+
+                }
+
 
             }
             sr.Close();
