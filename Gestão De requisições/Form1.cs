@@ -100,12 +100,18 @@ namespace Gestão_De_requisições
                         this.Hide();
 
                     }
-                    else if ((utilizador.tipo).TrimEnd() == "seguranca")
+                    else if ((utilizador.tipo)=="seguranca")
                     {
                         Form f4 = new Sfirst();
                         f4.Show();
                         this.Hide();
 
+                    }
+                    else if ((utilizador.tipo).TrimEnd()=="admin")
+                    {
+                        Form f4 = new Adminp2();
+                        f4.Show();
+                        this.Hide();
                     }
 
 
@@ -254,8 +260,9 @@ namespace Gestão_De_requisições
 
                 if (fill[3] == pass)
                 {
+                    sr.Close();
                     return true;
-
+                  
                 }
 
             }

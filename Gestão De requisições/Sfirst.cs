@@ -169,13 +169,6 @@ namespace Gestão_De_requisições
                 sr.Close();
 
 
-
-
-
-
-
-
-
                 mes.utilizador = Program.utilname;
                 mes.conversa = textBox2.Text;
                 mes.email = Program.utilemail;
@@ -306,13 +299,415 @@ namespace Gestão_De_requisições
         {
 
             dataGridView1.Rows.Clear();
+            int lin = 0;
+            DateTime data = Convert.ToDateTime(dateTimePicker1.Text);
 
-            por_salas_e_objectos();
+            string filedata = ("R_" + data.ToString("yyyy-MM-dd") + ".txt");
+
+
+
+            if (File.Exists(filedata) != true)
+            {
+                MessageBox.Show("O ficheiro dessa data não foi encontrado", "Ficheiro inexistente", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                string linha;
+                StreamReader sr = File.OpenText(filedata);
+
+
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    string[] fill = linha.Split(';');
+                    if (comboBox1.SelectedItem == null)// filtros de salas  desativadas  
+                    {
+
+                        if (comboBox2.SelectedItem == null)//filtro de objetos off
+                        {
+
+
+                            if (textBox1.Text == "")//filtro de utilizadores off
+                            {
+
+
+
+                                if (fill.Length <= 5)
+                                {
+                                    dataGridView1.Rows.Add(1);
+                                    dataGridView1[0, lin].Value = fill[0];
+                                    dataGridView1[1, lin].Value = fill[2];
+                                    dataGridView1[2, lin].Value = fill[1];
+                                    dataGridView1[3, lin].Value = fill[3];
+                                    dataGridView1[4, lin].Value = fill[4];
+                                    dataGridView1[5, lin].Value = "-";
+                                    dataGridView1[6, lin].Value = "-";
+                                    lin++;
+
+
+                                }
+                                else if (fill.Length > 5)
+                                {
+
+                                    dataGridView1.Rows.Add(1);
+                                    dataGridView1[0, lin].Value = fill[0];
+                                    dataGridView1[1, lin].Value = fill[2];
+                                    dataGridView1[2, lin].Value = fill[1];
+                                    dataGridView1[3, lin].Value = fill[3];
+                                    dataGridView1[4, lin].Value = fill[4];
+                                    dataGridView1[5, lin].Value = fill[6];
+                                    dataGridView1[6, lin].Value = fill[5];
+                                    lin++;
+                                }
+
+
+
+
+                            }
+                            else if (textBox1.Text != "")//filtro de utilizadores on
+                            {
+
+
+                                if (fill[0] == textBox1.Text)
+                                {
+
+
+                                    if (fill.Length <= 5)
+                                    {
+                                        dataGridView1.Rows.Add(1);
+                                        dataGridView1[0, lin].Value = fill[0];
+                                        dataGridView1[1, lin].Value = fill[2];
+                                        dataGridView1[2, lin].Value = fill[1];
+                                        dataGridView1[3, lin].Value = fill[3];
+                                        dataGridView1[4, lin].Value = fill[4];
+                                        dataGridView1[5, lin].Value = "-";
+                                        dataGridView1[6, lin].Value = "-";
+                                        lin++;
+
+
+                                    }
+                                    else if (fill.Length > 5)
+                                    {
+
+                                        dataGridView1.Rows.Add(1);
+                                        dataGridView1[0, lin].Value = fill[0];
+                                        dataGridView1[1, lin].Value = fill[2];
+                                        dataGridView1[2, lin].Value = fill[1];
+                                        dataGridView1[3, lin].Value = fill[3];
+                                        dataGridView1[4, lin].Value = fill[4];
+                                        dataGridView1[5, lin].Value = fill[6];
+                                        dataGridView1[6, lin].Value = fill[5];
+                                        lin++;
+                                    }
+
+
+
+
+
+
+
+                                }
+
+                            }
+
+
+
+
+
+
+                        }
+
+                        else if (comboBox2.SelectedItem != null)//filtro de objetos on
+                        {
+
+
+                            if (comboBox2.Text == fill[4])
+                            {
+
+
+                                if (textBox1.Text == "")//filtro de utilizadores off
+                                {
+
+
+
+                                    if (fill.Length <= 5)
+                                    {
+                                        dataGridView1.Rows.Add(1);
+                                        dataGridView1[0, lin].Value = fill[0];
+                                        dataGridView1[1, lin].Value = fill[2];
+                                        dataGridView1[2, lin].Value = fill[1];
+                                        dataGridView1[3, lin].Value = fill[3];
+                                        dataGridView1[4, lin].Value = fill[4];
+                                        dataGridView1[5, lin].Value = "-";
+                                        dataGridView1[6, lin].Value = "-";
+                                        lin++;
+
+
+                                    }
+                                    else if (fill.Length > 5)
+                                    {
+                                        dataGridView1.Rows.Add(1);
+                                        dataGridView1[0, lin].Value = fill[0];
+                                        dataGridView1[1, lin].Value = fill[2];
+                                        dataGridView1[2, lin].Value = fill[1];
+                                        dataGridView1[3, lin].Value = fill[3];
+                                        dataGridView1[4, lin].Value = fill[4];
+                                        dataGridView1[5, lin].Value = fill[6];
+                                        dataGridView1[6, lin].Value = fill[5];
+                                        lin++;
+                                    }
+
+
+
+
+                                }
+                                else if (textBox1.Text != "")//filtro de utilizadores on
+                                {
+
+
+                                    if (fill[0] == textBox1.Text)
+                                    {
+
+
+                                        if (fill.Length <= 5)
+                                        {
+                                            dataGridView1.Rows.Add(1);
+                                            dataGridView1[0, lin].Value = fill[0];
+                                            dataGridView1[1, lin].Value = fill[2];
+                                            dataGridView1[2, lin].Value = fill[1];
+                                            dataGridView1[3, lin].Value = fill[3];
+                                            dataGridView1[4, lin].Value = fill[4];
+                                            dataGridView1[5, lin].Value = "-";
+                                            dataGridView1[6, lin].Value = "-";
+                                            lin++;
+
+
+                                        }
+                                        else if (fill.Length > 5)
+                                        {
+
+                                            dataGridView1.Rows.Add(1);
+                                            dataGridView1[0, lin].Value = fill[0];
+                                            dataGridView1[1, lin].Value = fill[2];
+                                            dataGridView1[2, lin].Value = fill[1];
+                                            dataGridView1[3, lin].Value = fill[3];
+                                            dataGridView1[4, lin].Value = fill[4];
+                                            dataGridView1[5, lin].Value = fill[6];
+                                            dataGridView1[6, lin].Value = fill[5];
+                                            lin++;
+
+                                        }
+
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    else if (comboBox1.SelectedItem != null)// filtro de salas ativadas
+                    {
+
+
+                        if (fill[3] == comboBox1.SelectedItem.ToString())
+                        {
+
+
+                            if (comboBox2.SelectedItem == null)//filtro de objetos off
+                            {
+
+
+                                if (textBox1.Text == "")//filtro de utilizadores off
+                                {
+
+
+
+                                    if (fill.Length <= 5)
+                                    {
+                                        dataGridView1.Rows.Add(1);
+                                        dataGridView1[0, lin].Value = fill[0];
+                                        dataGridView1[1, lin].Value = fill[2];
+                                        dataGridView1[2, lin].Value = fill[1];
+                                        dataGridView1[3, lin].Value = fill[3];
+                                        dataGridView1[4, lin].Value = fill[4];
+                                        dataGridView1[5, lin].Value = "-";
+                                        dataGridView1[6, lin].Value = "-";
+                                        lin++;
+
+
+                                    }
+                                    else if (fill.Length > 5)
+                                    {
+
+                                        dataGridView1.Rows.Add(1);
+                                        dataGridView1[0, lin].Value = fill[0];
+                                        dataGridView1[1, lin].Value = fill[2];
+                                        dataGridView1[2, lin].Value = fill[1];
+                                        dataGridView1[3, lin].Value = fill[3];
+                                        dataGridView1[4, lin].Value = fill[4];
+                                        dataGridView1[5, lin].Value = fill[6];
+                                        dataGridView1[6, lin].Value = fill[5];
+                                        lin++;
+
+                                    }
+
+
+
+
+                                }
+                                else if (textBox1.Text != "")//filtro de utilizadores on
+                                {
+
+
+                                    if (fill[0] == textBox1.Text)
+                                    {
+
+
+                                        if (fill.Length <= 5)
+                                        {
+                                            dataGridView1.Rows.Add(1);
+                                            dataGridView1[0, lin].Value = fill[0];
+                                            dataGridView1[1, lin].Value = fill[2];
+                                            dataGridView1[2, lin].Value = fill[1];
+                                            dataGridView1[3, lin].Value = fill[3];
+                                            dataGridView1[4, lin].Value = fill[4];
+                                            dataGridView1[5, lin].Value = "-";
+                                            dataGridView1[6, lin].Value = "-";
+                                            lin++;
+
+
+                                        }
+                                        else if (fill.Length > 5)
+                                        {
+
+                                            dataGridView1.Rows.Add(1);
+                                            dataGridView1[0, lin].Value = fill[0];
+                                            dataGridView1[1, lin].Value = fill[2];
+                                            dataGridView1[2, lin].Value = fill[1];
+                                            dataGridView1[3, lin].Value = fill[3];
+                                            dataGridView1[4, lin].Value = fill[4];
+                                            dataGridView1[5, lin].Value = fill[6];
+                                            dataGridView1[6, lin].Value = fill[5];
+                                            lin++;
+                                        }
+
+
+
+
+
+
+
+                                    }
+
+                                }
+
+
+
+
+
+
+                            }
+
+                            else if (comboBox2.SelectedItem != null)//filtro de objetos on
+                            {
+
+
+                                if (comboBox2.Text == fill[4])
+                                {
+
+
+                                    if (textBox1.Text == "")//filtro de utilizadores off
+                                    {
+
+
+
+                                        if (fill.Length <= 5)
+                                        {
+                                            dataGridView1.Rows.Add(1);
+                                            dataGridView1[0, lin].Value = fill[0];
+                                            dataGridView1[1, lin].Value = fill[2];
+                                            dataGridView1[2, lin].Value = fill[1];
+                                            dataGridView1[3, lin].Value = fill[3];
+                                            dataGridView1[4, lin].Value = fill[4];
+                                            dataGridView1[5, lin].Value = "-";
+                                            dataGridView1[6, lin].Value = "-";
+                                            lin++;
+
+
+                                        }
+                                        else if (fill.Length > 5)
+                                        {
+
+                                            dataGridView1.Rows.Add(1);
+                                            dataGridView1[0, lin].Value = fill[0];
+                                            dataGridView1[1, lin].Value = fill[2];
+                                            dataGridView1[2, lin].Value = fill[1];
+                                            dataGridView1[3, lin].Value = fill[3];
+                                            dataGridView1[4, lin].Value = fill[4];
+                                            dataGridView1[5, lin].Value = fill[6];
+                                            dataGridView1[6, lin].Value = fill[5];
+                                            lin++;
+                                        }
+
+
+
+
+                                    }
+                                    else if (textBox1.Text != "")//filtro de utilizadores on
+                                    {
+
+
+                                        if (fill[0] == textBox1.Text)
+                                        {
+
+
+                                            if (fill.Length <= 5)
+                                            {
+                                                dataGridView1.Rows.Add(1);
+                                                dataGridView1[0, lin].Value = fill[0];
+                                                dataGridView1[1, lin].Value = fill[2];
+                                                dataGridView1[2, lin].Value = fill[1];
+                                                dataGridView1[3, lin].Value = fill[3];
+                                                dataGridView1[4, lin].Value = fill[4];
+                                                dataGridView1[5, lin].Value = "-";
+                                                dataGridView1[6, lin].Value = "-";
+                                                lin++;
+
+
+                                            }
+                                            else if (fill.Length > 5)
+                                            {
+
+                                                dataGridView1.Rows.Add(1);
+                                                dataGridView1[0, lin].Value = fill[0];
+                                                dataGridView1[1, lin].Value = fill[2];
+                                                dataGridView1[2, lin].Value = fill[1];
+                                                dataGridView1[3, lin].Value = fill[3];
+                                                dataGridView1[4, lin].Value = fill[4];
+                                                dataGridView1[5, lin].Value = fill[6];
+                                                dataGridView1[6, lin].Value = fill[5];
+                                                lin++;
+
+                                            }
+
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+                sr.Close();
+
+            }
+
 
 
         }
 
         //Filtro por salas e objetos 
+        /*
         public void por_salas_e_objectos() {
 
 
@@ -511,7 +906,7 @@ namespace Gestão_De_requisições
 
             }
 
-        }
+        }*/
 
 
 
@@ -535,7 +930,7 @@ namespace Gestão_De_requisições
 
 
 
-
+        /*
         public void tudo() {
 
             int lin = 0;
@@ -605,7 +1000,7 @@ namespace Gestão_De_requisições
 
 
 
-        }
+        }*/
 
 
 

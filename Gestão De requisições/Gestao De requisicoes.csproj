@@ -60,6 +60,12 @@
     </Compile>
     <Compile Include="chat.cs" />
     <Compile Include="Contas.cs" />
+    <Compile Include="CriarcontaAdminandSec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CriarcontaAdminandSec.Designer.cs">
+      <DependentUpon>CriarcontaAdminandSec.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dfirsttpage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Adminp2.resx">
       <DependentUpon>Adminp2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CriarcontaAdminandSec.resx">
+      <DependentUpon>CriarcontaAdminandSec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dfirsttpage.resx">
       <DependentUpon>Dfirsttpage.cs</DependentUpon>

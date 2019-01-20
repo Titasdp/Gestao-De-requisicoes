@@ -11,54 +11,57 @@ using System.IO;
 
 namespace Gestão_De_requisições
 {
-    public partial class Signup : Form
+    public partial class CriarcontaAdminandSec : Form
     {
-        string hu = @"histórico de utilizadores.txt";//nome de um ficheiro que guarda info sobre todos os utilizadores que já criaram contas nesta aplicacao  
-        string nome = @"utilizadores.txt";// nome do ficheiro  de utilizadores
-        public Signup()
+
+        string hu = @"histórico de utilizadores.txt";//nome de um ficheiro que guarda info sobre todos os utilizadores que já criaram contas nesta aplicacao
+        string nome = @"utilizadores.txt";
+
+        public CriarcontaAdminandSec()
         {
             InitializeComponent();
         }
 
-        private void Signup_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //esse botao guarda a nova conta no ficheiro o e volta para o formulário anterior 
+        //criar utilizador
         private void button1_Click(object sender, EventArgs e)
         {
 
-                //Caso as textbox estejam vazias 
-            if (textBox1.Text == "" ||textBox2.Text==""||textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "")
+            string tipo = "";
+
+
+
+            //Caso as textbox estejam vazias 
+            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "" || textBox5.Text == "")
             {
-                MessageBox.Show("Existem Campos do Formulário por completar","Formulário Incompleto",MessageBoxButtons.OK);
+                MessageBox.Show("Existem Campos do Formulário por completar", "Formulário Incompleto", MessageBoxButtons.OK);
             }
             else
             {
 
-               var contains = "@esmad.ipp.pt";
-                bool exist =textBox2.Text.Contains(contains);
+                var contains = "@esmad.ipp.pt";
+                bool exist = textBox2.Text.Contains(contains);
 
-                if (textBox2.Text!= textBox3.Text)
+                if (textBox2.Text != textBox3.Text)
                 {
                     MessageBox.Show("Confirme Correctamente o seu email", "Confirmação do Email", MessageBoxButtons.OK);
                 }
                 else if (textBox4.Text != textBox5.Text)
                 {
                     MessageBox.Show("Confirme Correctamente o seu passord", "Confirmação do Password ", MessageBoxButtons.OK);
-                   
+
                 }
 
-               else if (exist==false)
+                else if (exist == false)
                 {
                     MessageBox.Show("Confirme Correctamente o seu email", "Email inválido", MessageBoxButtons.OK);
                 }
+
+                else if(checkBox1.Checked==false && checkBox2.Checked==false)
+                {
+                    MessageBox.Show("Confirme  o tipo de utilizador que esta conta vai ser", "Confirmar o tipo de utilizador", MessageBoxButtons.OK);
+                }
+
                 else
                 {
 
@@ -72,7 +75,7 @@ namespace Gestão_De_requisições
                         cont++;
                     }
                     sr.Close();
-                    
+
 
 
 
@@ -81,25 +84,33 @@ namespace Gestão_De_requisições
                     utilizador.utilizador = textBox1.Text;
                     utilizador.email = textBox2.Text;
                     utilizador.password = textBox4.Text;
-                    utilizador.tipo = "docente";
+                    if (checkBox1.Checked==true)
+                    {
+                        tipo = "admin";
+                    }
+                    else if (checkBox2.Checked == true)
+                    {
+                        tipo = "seguranca";
+                    }
+                    utilizador.tipo = tipo;
 
 
                     string mail = utilizador.email;
                     string nomeutilizador = utilizador.utilizador;
 
-                    if ((usernameval(nomeutilizador)!=true))
+                    /*if ((usernameval(nomeutilizador) != true))
                     {
 
-                    }
+                    }*/
 
-                    if (emailval(mail)!=true)
+                    if (emailval(mail) != true)
                     {
                         MessageBox.Show("O  email  já contem conta na aplicação ", "Conta Existente", MessageBoxButtons.OK);
                     }
                     else
                     {
                         //prepara a estrutura para ser armazenada
-                        string linha = ((utilizador.id.ToString()) + ";" + utilizador.utilizador + ";"+ utilizador.email + ";" + utilizador.password + ";" + utilizador.tipo);
+                        string linha = ((utilizador.id.ToString()) + ";" + utilizador.utilizador + ";" + utilizador.email + ";" + utilizador.password + ";" + utilizador.tipo);
 
                         //Adicona a nova conta ao ficheiro 
                         StreamWriter sw = File.AppendText(nome);
@@ -113,7 +124,7 @@ namespace Gestão_De_requisições
                         sw2.Close();
 
                         // depois de ser criada a conta ele envia directamente para o form inicial 
-                        Form f1 = new Form1();
+                        Form f1 = new Adminp2();
                         f1.Show();
                         this.Hide();
 
@@ -123,34 +134,52 @@ namespace Gestão_De_requisições
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 }
-
-
             }
-
-
-
-
-
-
-
-            
         }
+
+
+
 
 
         //Sendo que os email nao podem ser o mesmo caso o email ja for existente essa funcao impede que essa seja criada 
         public bool emailval(string mail)
         {
-          
+
             StreamReader sr = File.OpenText(nome);
-              string linha;
+            string linha;
 
 
             while ((linha = sr.ReadLine()) != null)
             {
-               
-                string[] fill =linha.Split(';');
-         
+
+                string[] fill = linha.Split(';');
+
 
                 if (fill.Count() < 2)//confirma se e possivel criar contas  sendo que esse pode conter um elemento invisivel 
                 {
@@ -159,14 +188,14 @@ namespace Gestão_De_requisições
 
                 }
 
-      
-                else if (mail == fill[2]) 
+
+                else if (mail == fill[2])
                 {
                     sr.Close();
                     return false;
-                 
+
                 }
-             
+
 
             }
             sr.Close();
@@ -175,7 +204,7 @@ namespace Gestão_De_requisições
 
 
 
-        public bool usernameval(string nomeutilizador)
+        /*public bool usernameval(string nomeutilizador)
         {
 
             StreamReader sr = File.OpenText(nome);
@@ -205,61 +234,19 @@ namespace Gestão_De_requisições
 
 
             }
-            sr.Close();
+         
             return true;
+        }*/
+        
+        //elemina a posibilidade de ser  atribuida caracteristicas duplas
+        private void checkBox2_Click(object sender, EventArgs e)
+        {
+            checkBox1.Checked = false;
         }
 
-
-
-
-
-
-
-
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void checkBox1_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
+            checkBox2.Checked = false;
         }
     }
 }
