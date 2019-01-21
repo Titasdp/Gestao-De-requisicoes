@@ -152,11 +152,12 @@
             // 
             // listBox1
             // 
+            this.listBox1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 22;
+            this.listBox1.ItemHeight = 24;
             this.listBox1.Location = new System.Drawing.Point(14, 22);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(741, 246);
+            this.listBox1.Size = new System.Drawing.Size(741, 244);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -179,7 +180,7 @@
             this.button4.Font = new System.Drawing.Font("Arial Narrow", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(570, 166);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(179, 85);
+            this.button4.Size = new System.Drawing.Size(179, 56);
             this.button4.TabIndex = 26;
             this.button4.Text = "Submeter Formulário ";
             this.button4.UseVisualStyleBackColor = true;

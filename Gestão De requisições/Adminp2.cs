@@ -14,13 +14,15 @@ namespace Gestão_De_requisições
     public partial class Adminp2 : Form
     {
 
-
+        int cont;
+        string iden = "";
         string conversa = @"conversa.txt";
         string salas = @"salas.txt";
         string objectos = @"objectos.txt";
         string requisicoes = ("R_" + DateTime.Today.ToString("yyyy-MM-dd") + ".txt");
         string apoio = @"apoio.txt";
         string nome = @"utilizadores.txt";
+        string obh = @"obh.txt";
 
         public Adminp2()
         {
@@ -91,6 +93,65 @@ namespace Gestão_De_requisições
                 listBox3.Items.Add(fill[0]+"-"+fill[1]);
             }
             sr.Close();
+
+
+            comboBox3.Items.Add("A");
+            comboBox3.Items.Add("B");
+            comboBox3.Items.Add("C");
+            comboBox3.Items.Add("D");
+            comboBox3.Items.Add("E");
+            comboBox3.Items.Add("F");
+            comboBox3.Items.Add("G");
+            comboBox3.Items.Add("H");
+            comboBox3.Items.Add("I");
+            comboBox3.Items.Add("J");
+            comboBox3.Items.Add("K");
+            comboBox3.Items.Add("L");
+            comboBox3.Items.Add("M");
+            comboBox3.Items.Add("N");
+            comboBox3.Items.Add("O");
+            comboBox3.Items.Add("P");
+            comboBox3.Items.Add("Q");
+            comboBox3.Items.Add("R");
+            comboBox3.Items.Add("S");
+            comboBox3.Items.Add("T");
+            comboBox3.Items.Add("U");
+            comboBox3.Items.Add("V");
+            comboBox3.Items.Add("X");
+            comboBox3.Items.Add("Y");
+            comboBox3.Items.Add("Z");
+
+            string pa_cont;
+             cont = 0;
+            if (File.Exists(obh)==true)
+            {
+                StreamReader si = File.OpenText(obh);
+                while ((pa_cont = si.ReadLine()) != null)
+                {
+
+                    cont++;
+                }
+                si.Close();
+
+            }
+            else
+            {
+                StreamWriter sc= File.CreateText(obh);
+                sc.Close();
+               
+            }
+
+            iden = cont.ToString();
+            if (cont <10)
+            {
+
+                textBox16.Text = "0" + iden;
+            }
+            else
+            {
+                textBox16.Text = iden;
+            }
+           
 
 
         }
@@ -408,6 +469,36 @@ namespace Gestão_De_requisições
         private void button3_Click(object sender, EventArgs e)
         {
             dataGridView2.Rows.Clear();
+
+
+
+            string tipo = "";
+            if (checkBox1.Checked== true && checkBox2.Checked == false)
+            {
+                tipo = "D";
+            }
+            else if (checkBox2.Checked==true && checkBox1.Checked == false)
+            {
+                tipo = "R";
+            }
+            else if (checkBox1.Checked==false || checkBox2.Checked==false)
+            {
+                tipo = "T";
+            }
+            else if (checkBox1.Checked == true || checkBox2.Checked == true)
+            {
+                tipo = "T";
+            }
+           
+           
+            
+
+
+
+
+
+
+
             int lin = 0;
             DateTime data = Convert.ToDateTime(dateTimePicker1.Text);
 
@@ -438,50 +529,16 @@ namespace Gestão_De_requisições
                             if (textBox4.Text == "")//filtro de utilizadores off
                             {
 
-
-
-                                if (fill.Length <= 5)
-                                {
-                                    dataGridView2.Rows.Add(1);
-                                    dataGridView2[0, lin].Value = fill[0];
-                                    dataGridView2[1, lin].Value = fill[2];
-                                    dataGridView2[2, lin].Value = fill[1];
-                                    dataGridView2[3, lin].Value = fill[3];
-                                    dataGridView2[4, lin].Value = fill[4];
-                                    dataGridView2[5, lin].Value = "-";
-                                    dataGridView2[6, lin].Value = "-";
-                                    lin++;
-
-
-                                }
-                                else if (fill.Length > 5)
+                                if (tipo == "T")
                                 {
 
-                                    dataGridView2.Rows.Add(1);
-                                    dataGridView2[0, lin].Value = fill[0];
-                                    dataGridView2[1, lin].Value = fill[2];
-                                    dataGridView2[2, lin].Value = fill[1];
-                                    dataGridView2[3, lin].Value = fill[3];
-                                    dataGridView2[4, lin].Value = fill[4];
-                                    dataGridView2[5, lin].Value = fill[6];
-                                    dataGridView2[6, lin].Value = fill[5];
-                                    lin++;
-                                }
-
-
-
-
-                            }
-                            else if (textBox4.Text != "")//filtro de utilizadores on
-                            {
-
-
-                                if (fill[0] == textBox4.Text)
-                                {
 
 
                                     if (fill.Length <= 5)
                                     {
+
+
+
                                         dataGridView2.Rows.Add(1);
                                         dataGridView2[0, lin].Value = fill[0];
                                         dataGridView2[1, lin].Value = fill[2];
@@ -507,6 +564,106 @@ namespace Gestão_De_requisições
                                         dataGridView2[6, lin].Value = fill[5];
                                         lin++;
                                     }
+                                }
+                                else if (tipo=="D"&&fill.Length>5)
+                                {
+                                    dataGridView2.Rows.Add(1);
+                                    dataGridView2[0, lin].Value = fill[0];
+                                    dataGridView2[1, lin].Value = fill[2];
+                                    dataGridView2[2, lin].Value = fill[1];
+                                    dataGridView2[3, lin].Value = fill[3];
+                                    dataGridView2[4, lin].Value = fill[4];
+                                    dataGridView2[5, lin].Value = fill[6];
+                                    dataGridView2[6, lin].Value = fill[5];
+                                    lin++;
+                                }
+                                else if(tipo =="R"&&fill.Length<=5)
+                                {
+                                    dataGridView2.Rows.Add(1);
+                                    dataGridView2[0, lin].Value = fill[0];
+                                    dataGridView2[1, lin].Value = fill[2];
+                                    dataGridView2[2, lin].Value = fill[1];
+                                    dataGridView2[3, lin].Value = fill[3];
+                                    dataGridView2[4, lin].Value = fill[4];
+                                    dataGridView2[5, lin].Value = "-";
+                                    dataGridView2[6, lin].Value = "-";
+                                    lin++;
+                                }
+                              
+
+
+
+
+                            }
+                            else if (textBox4.Text != "")//filtro de utilizadores on
+                            {
+
+
+                                if (fill[0] == textBox4.Text)
+                                {
+
+
+                                    if (tipo == "T")
+                                    {
+
+
+
+                                        if (fill.Length <= 5)
+                                        {
+
+
+
+                                            dataGridView2.Rows.Add(1);
+                                            dataGridView2[0, lin].Value = fill[0];
+                                            dataGridView2[1, lin].Value = fill[2];
+                                            dataGridView2[2, lin].Value = fill[1];
+                                            dataGridView2[3, lin].Value = fill[3];
+                                            dataGridView2[4, lin].Value = fill[4];
+                                            dataGridView2[5, lin].Value = "-";
+                                            dataGridView2[6, lin].Value = "-";
+                                            lin++;
+
+
+                                        }
+                                        else if (fill.Length > 5)
+                                        {
+
+                                            dataGridView2.Rows.Add(1);
+                                            dataGridView2[0, lin].Value = fill[0];
+                                            dataGridView2[1, lin].Value = fill[2];
+                                            dataGridView2[2, lin].Value = fill[1];
+                                            dataGridView2[3, lin].Value = fill[3];
+                                            dataGridView2[4, lin].Value = fill[4];
+                                            dataGridView2[5, lin].Value = fill[6];
+                                            dataGridView2[6, lin].Value = fill[5];
+                                            lin++;
+                                        }
+                                    }
+                                    else if (tipo == "D" && fill.Length > 5)
+                                    {
+                                        dataGridView2.Rows.Add(1);
+                                        dataGridView2[0, lin].Value = fill[0];
+                                        dataGridView2[1, lin].Value = fill[2];
+                                        dataGridView2[2, lin].Value = fill[1];
+                                        dataGridView2[3, lin].Value = fill[3];
+                                        dataGridView2[4, lin].Value = fill[4];
+                                        dataGridView2[5, lin].Value = fill[6];
+                                        dataGridView2[6, lin].Value = fill[5];
+                                        lin++;
+                                    }
+                                    else if (tipo == "R" && fill.Length <= 5)
+                                    {
+                                        dataGridView2.Rows.Add(1);
+                                        dataGridView2[0, lin].Value = fill[0];
+                                        dataGridView2[1, lin].Value = fill[2];
+                                        dataGridView2[2, lin].Value = fill[1];
+                                        dataGridView2[3, lin].Value = fill[3];
+                                        dataGridView2[4, lin].Value = fill[4];
+                                        dataGridView2[5, lin].Value = "-";
+                                        dataGridView2[6, lin].Value = "-";
+                                        lin++;
+                                    }
+
 
 
 
@@ -538,47 +695,16 @@ namespace Gestão_De_requisições
 
 
 
-                                    if (fill.Length <= 5)
+                                    if (tipo == "T")
                                     {
-                                        dataGridView2.Rows.Add(1);
-                                        dataGridView2[0, lin].Value = fill[0];
-                                        dataGridView2[1, lin].Value = fill[2];
-                                        dataGridView2[2, lin].Value = fill[1];
-                                        dataGridView2[3, lin].Value = fill[3];
-                                        dataGridView2[4, lin].Value = fill[4];
-                                        dataGridView2[5, lin].Value = "-";
-                                        dataGridView2[6, lin].Value = "-";
-                                        lin++;
 
-
-                                    }
-                                    else if (fill.Length > 5)
-                                    {
-                                        dataGridView2.Rows.Add(1);
-                                        dataGridView2[0, lin].Value = fill[0];
-                                        dataGridView2[1, lin].Value = fill[2];
-                                        dataGridView2[2, lin].Value = fill[1];
-                                        dataGridView2[3, lin].Value = fill[3];
-                                        dataGridView2[4, lin].Value = fill[4];
-                                        dataGridView2[5, lin].Value = fill[6];
-                                        dataGridView2[6, lin].Value = fill[5];
-                                        lin++;
-                                    }
-
-
-
-
-                                }
-                                else if (textBox4.Text != "")//filtro de utilizadores on
-                                {
-
-
-                                    if (fill[0] == textBox4.Text)
-                                    {
 
 
                                         if (fill.Length <= 5)
                                         {
+
+
+
                                             dataGridView2.Rows.Add(1);
                                             dataGridView2[0, lin].Value = fill[0];
                                             dataGridView2[1, lin].Value = fill[2];
@@ -603,8 +729,106 @@ namespace Gestão_De_requisições
                                             dataGridView2[5, lin].Value = fill[6];
                                             dataGridView2[6, lin].Value = fill[5];
                                             lin++;
-
                                         }
+                                    }
+                                    else if (tipo == "D" && fill.Length > 5)
+                                    {
+                                        dataGridView2.Rows.Add(1);
+                                        dataGridView2[0, lin].Value = fill[0];
+                                        dataGridView2[1, lin].Value = fill[2];
+                                        dataGridView2[2, lin].Value = fill[1];
+                                        dataGridView2[3, lin].Value = fill[3];
+                                        dataGridView2[4, lin].Value = fill[4];
+                                        dataGridView2[5, lin].Value = fill[6];
+                                        dataGridView2[6, lin].Value = fill[5];
+                                        lin++;
+                                    }
+                                    else if (tipo == "R" && fill.Length <= 5)
+                                    {
+                                        dataGridView2.Rows.Add(1);
+                                        dataGridView2[0, lin].Value = fill[0];
+                                        dataGridView2[1, lin].Value = fill[2];
+                                        dataGridView2[2, lin].Value = fill[1];
+                                        dataGridView2[3, lin].Value = fill[3];
+                                        dataGridView2[4, lin].Value = fill[4];
+                                        dataGridView2[5, lin].Value = "-";
+                                        dataGridView2[6, lin].Value = "-";
+                                        lin++;
+                                    }
+
+
+
+
+                                }
+                                else if (textBox4.Text != "")//filtro de utilizadores on
+                                {
+
+
+                                    if (fill[0] == textBox4.Text)
+                                    {
+
+
+                                        if (tipo == "T")
+                                        {
+
+
+
+                                            if (fill.Length <= 5)
+                                            {
+
+
+
+                                                dataGridView2.Rows.Add(1);
+                                                dataGridView2[0, lin].Value = fill[0];
+                                                dataGridView2[1, lin].Value = fill[2];
+                                                dataGridView2[2, lin].Value = fill[1];
+                                                dataGridView2[3, lin].Value = fill[3];
+                                                dataGridView2[4, lin].Value = fill[4];
+                                                dataGridView2[5, lin].Value = "-";
+                                                dataGridView2[6, lin].Value = "-";
+                                                lin++;
+
+
+                                            }
+                                            else if (fill.Length > 5)
+                                            {
+
+                                                dataGridView2.Rows.Add(1);
+                                                dataGridView2[0, lin].Value = fill[0];
+                                                dataGridView2[1, lin].Value = fill[2];
+                                                dataGridView2[2, lin].Value = fill[1];
+                                                dataGridView2[3, lin].Value = fill[3];
+                                                dataGridView2[4, lin].Value = fill[4];
+                                                dataGridView2[5, lin].Value = fill[6];
+                                                dataGridView2[6, lin].Value = fill[5];
+                                                lin++;
+                                            }
+                                        }
+                                        else if (tipo == "D" && fill.Length > 5)
+                                        {
+                                            dataGridView2.Rows.Add(1);
+                                            dataGridView2[0, lin].Value = fill[0];
+                                            dataGridView2[1, lin].Value = fill[2];
+                                            dataGridView2[2, lin].Value = fill[1];
+                                            dataGridView2[3, lin].Value = fill[3];
+                                            dataGridView2[4, lin].Value = fill[4];
+                                            dataGridView2[5, lin].Value = fill[6];
+                                            dataGridView2[6, lin].Value = fill[5];
+                                            lin++;
+                                        }
+                                        else if (tipo == "R" && fill.Length <= 5)
+                                        {
+                                            dataGridView2.Rows.Add(1);
+                                            dataGridView2[0, lin].Value = fill[0];
+                                            dataGridView2[1, lin].Value = fill[2];
+                                            dataGridView2[2, lin].Value = fill[1];
+                                            dataGridView2[3, lin].Value = fill[3];
+                                            dataGridView2[4, lin].Value = fill[4];
+                                            dataGridView2[5, lin].Value = "-";
+                                            dataGridView2[6, lin].Value = "-";
+                                            lin++;
+                                        }
+
 
                                     }
 
@@ -629,49 +853,16 @@ namespace Gestão_De_requisições
 
 
 
-                                    if (fill.Length <= 5)
-                                    {
-                                        dataGridView2.Rows.Add(1);
-                                        dataGridView2[0, lin].Value = fill[0];
-                                        dataGridView2[1, lin].Value = fill[2];
-                                        dataGridView2[2, lin].Value = fill[1];
-                                        dataGridView2[3, lin].Value = fill[3];
-                                        dataGridView2[4, lin].Value = fill[4];
-                                        dataGridView2[5, lin].Value = "-";
-                                        dataGridView2[6, lin].Value = "-";
-                                        lin++;
-
-
-                                    }
-                                    else if (fill.Length > 5)
+                                    if (tipo == "T")
                                     {
 
-                                        dataGridView2.Rows.Add(1);
-                                        dataGridView2[0, lin].Value = fill[0];
-                                        dataGridView2[1, lin].Value = fill[2];
-                                        dataGridView2[2, lin].Value = fill[1];
-                                        dataGridView2[3, lin].Value = fill[3];
-                                        dataGridView2[4, lin].Value = fill[4];
-                                        dataGridView2[5, lin].Value = fill[6];
-                                        dataGridView2[6, lin].Value = fill[5];
-                                        lin++;
-
-                                    }
-
-
-
-
-                                }
-                                else if (textBox4.Text != "")//filtro de utilizadores on
-                                {
-
-
-                                    if (fill[0] == textBox4.Text)
-                                    {
 
 
                                         if (fill.Length <= 5)
                                         {
+
+
+
                                             dataGridView2.Rows.Add(1);
                                             dataGridView2[0, lin].Value = fill[0];
                                             dataGridView2[1, lin].Value = fill[2];
@@ -697,6 +888,106 @@ namespace Gestão_De_requisições
                                             dataGridView2[6, lin].Value = fill[5];
                                             lin++;
                                         }
+                                    }
+                                    else if (tipo == "D" && fill.Length > 5)
+                                    {
+                                        dataGridView2.Rows.Add(1);
+                                        dataGridView2[0, lin].Value = fill[0];
+                                        dataGridView2[1, lin].Value = fill[2];
+                                        dataGridView2[2, lin].Value = fill[1];
+                                        dataGridView2[3, lin].Value = fill[3];
+                                        dataGridView2[4, lin].Value = fill[4];
+                                        dataGridView2[5, lin].Value = fill[6];
+                                        dataGridView2[6, lin].Value = fill[5];
+                                        lin++;
+                                    }
+                                    else if (tipo == "R" && fill.Length <= 5)
+                                    {
+                                        dataGridView2.Rows.Add(1);
+                                        dataGridView2[0, lin].Value = fill[0];
+                                        dataGridView2[1, lin].Value = fill[2];
+                                        dataGridView2[2, lin].Value = fill[1];
+                                        dataGridView2[3, lin].Value = fill[3];
+                                        dataGridView2[4, lin].Value = fill[4];
+                                        dataGridView2[5, lin].Value = "-";
+                                        dataGridView2[6, lin].Value = "-";
+                                        lin++;
+                                    }
+
+
+
+
+
+                                }
+                                else if (textBox4.Text != "")//filtro de utilizadores on
+                                {
+
+
+                                    if (fill[0] == textBox4.Text)
+                                    {
+
+
+                                        if (tipo == "T")
+                                        {
+
+
+
+                                            if (fill.Length <= 5)
+                                            {
+
+
+
+                                                dataGridView2.Rows.Add(1);
+                                                dataGridView2[0, lin].Value = fill[0];
+                                                dataGridView2[1, lin].Value = fill[2];
+                                                dataGridView2[2, lin].Value = fill[1];
+                                                dataGridView2[3, lin].Value = fill[3];
+                                                dataGridView2[4, lin].Value = fill[4];
+                                                dataGridView2[5, lin].Value = "-";
+                                                dataGridView2[6, lin].Value = "-";
+                                                lin++;
+
+
+                                            }
+                                            else if (fill.Length > 5)
+                                            {
+
+                                                dataGridView2.Rows.Add(1);
+                                                dataGridView2[0, lin].Value = fill[0];
+                                                dataGridView2[1, lin].Value = fill[2];
+                                                dataGridView2[2, lin].Value = fill[1];
+                                                dataGridView2[3, lin].Value = fill[3];
+                                                dataGridView2[4, lin].Value = fill[4];
+                                                dataGridView2[5, lin].Value = fill[6];
+                                                dataGridView2[6, lin].Value = fill[5];
+                                                lin++;
+                                            }
+                                        }
+                                        else if (tipo == "D" && fill.Length > 5)
+                                        {
+                                            dataGridView2.Rows.Add(1);
+                                            dataGridView2[0, lin].Value = fill[0];
+                                            dataGridView2[1, lin].Value = fill[2];
+                                            dataGridView2[2, lin].Value = fill[1];
+                                            dataGridView2[3, lin].Value = fill[3];
+                                            dataGridView2[4, lin].Value = fill[4];
+                                            dataGridView2[5, lin].Value = fill[6];
+                                            dataGridView2[6, lin].Value = fill[5];
+                                            lin++;
+                                        }
+                                        else if (tipo == "R" && fill.Length <= 5)
+                                        {
+                                            dataGridView2.Rows.Add(1);
+                                            dataGridView2[0, lin].Value = fill[0];
+                                            dataGridView2[1, lin].Value = fill[2];
+                                            dataGridView2[2, lin].Value = fill[1];
+                                            dataGridView2[3, lin].Value = fill[3];
+                                            dataGridView2[4, lin].Value = fill[4];
+                                            dataGridView2[5, lin].Value = "-";
+                                            dataGridView2[6, lin].Value = "-";
+                                            lin++;
+                                        }
+
 
 
 
@@ -728,48 +1019,16 @@ namespace Gestão_De_requisições
 
 
 
-                                        if (fill.Length <= 5)
-                                        {
-                                            dataGridView2.Rows.Add(1);
-                                            dataGridView2[0, lin].Value = fill[0];
-                                            dataGridView2[1, lin].Value = fill[2];
-                                            dataGridView2[2, lin].Value = fill[1];
-                                            dataGridView2[3, lin].Value = fill[3];
-                                            dataGridView2[4, lin].Value = fill[4];
-                                            dataGridView2[5, lin].Value = "-";
-                                            dataGridView2[6, lin].Value = "-";
-                                            lin++;
-
-
-                                        }
-                                        else if (fill.Length > 5)
+                                        if (tipo == "T")
                                         {
 
-                                            dataGridView2.Rows.Add(1);
-                                            dataGridView2[0, lin].Value = fill[0];
-                                            dataGridView2[1, lin].Value = fill[2];
-                                            dataGridView2[2, lin].Value = fill[1];
-                                            dataGridView2[3, lin].Value = fill[3];
-                                            dataGridView2[4, lin].Value = fill[4];
-                                            dataGridView2[5, lin].Value = fill[6];
-                                            dataGridView2[6, lin].Value = fill[5];
-                                            lin++;
-                                        }
-
-
-
-
-                                    }
-                                    else if (textBox4.Text !="")//filtro de utilizadores on
-                                    {
-
-
-                                        if (fill[0] == textBox4.Text)
-                                        {
 
 
                                             if (fill.Length <= 5)
                                             {
+
+
+
                                                 dataGridView2.Rows.Add(1);
                                                 dataGridView2[0, lin].Value = fill[0];
                                                 dataGridView2[1, lin].Value = fill[2];
@@ -794,8 +1053,107 @@ namespace Gestão_De_requisições
                                                 dataGridView2[5, lin].Value = fill[6];
                                                 dataGridView2[6, lin].Value = fill[5];
                                                 lin++;
-
                                             }
+                                        }
+                                        else if (tipo == "D" && fill.Length > 5)
+                                        {
+                                            dataGridView2.Rows.Add(1);
+                                            dataGridView2[0, lin].Value = fill[0];
+                                            dataGridView2[1, lin].Value = fill[2];
+                                            dataGridView2[2, lin].Value = fill[1];
+                                            dataGridView2[3, lin].Value = fill[3];
+                                            dataGridView2[4, lin].Value = fill[4];
+                                            dataGridView2[5, lin].Value = fill[6];
+                                            dataGridView2[6, lin].Value = fill[5];
+                                            lin++;
+                                        }
+                                        else if (tipo == "R" && fill.Length <= 5)
+                                        {
+                                            dataGridView2.Rows.Add(1);
+                                            dataGridView2[0, lin].Value = fill[0];
+                                            dataGridView2[1, lin].Value = fill[2];
+                                            dataGridView2[2, lin].Value = fill[1];
+                                            dataGridView2[3, lin].Value = fill[3];
+                                            dataGridView2[4, lin].Value = fill[4];
+                                            dataGridView2[5, lin].Value = "-";
+                                            dataGridView2[6, lin].Value = "-";
+                                            lin++;
+                                        }
+
+
+
+
+
+                                    }
+                                    else if (textBox4.Text !="")//filtro de utilizadores on
+                                    {
+
+
+                                        if (fill[0] == textBox4.Text)
+                                        {
+
+
+                                            if (tipo == "T")
+                                            {
+
+
+
+                                                if (fill.Length <= 5)
+                                                {
+
+
+
+                                                    dataGridView2.Rows.Add(1);
+                                                    dataGridView2[0, lin].Value = fill[0];
+                                                    dataGridView2[1, lin].Value = fill[2];
+                                                    dataGridView2[2, lin].Value = fill[1];
+                                                    dataGridView2[3, lin].Value = fill[3];
+                                                    dataGridView2[4, lin].Value = fill[4];
+                                                    dataGridView2[5, lin].Value = "-";
+                                                    dataGridView2[6, lin].Value = "-";
+                                                    lin++;
+
+
+                                                }
+                                                else if (fill.Length > 5)
+                                                {
+
+                                                    dataGridView2.Rows.Add(1);
+                                                    dataGridView2[0, lin].Value = fill[0];
+                                                    dataGridView2[1, lin].Value = fill[2];
+                                                    dataGridView2[2, lin].Value = fill[1];
+                                                    dataGridView2[3, lin].Value = fill[3];
+                                                    dataGridView2[4, lin].Value = fill[4];
+                                                    dataGridView2[5, lin].Value = fill[6];
+                                                    dataGridView2[6, lin].Value = fill[5];
+                                                    lin++;
+                                                }
+                                            }
+                                            else if (tipo == "D" && fill.Length > 5)
+                                            {
+                                                dataGridView2.Rows.Add(1);
+                                                dataGridView2[0, lin].Value = fill[0];
+                                                dataGridView2[1, lin].Value = fill[2];
+                                                dataGridView2[2, lin].Value = fill[1];
+                                                dataGridView2[3, lin].Value = fill[3];
+                                                dataGridView2[4, lin].Value = fill[4];
+                                                dataGridView2[5, lin].Value = fill[6];
+                                                dataGridView2[6, lin].Value = fill[5];
+                                                lin++;
+                                            }
+                                            else if (tipo == "R" && fill.Length <= 5)
+                                            {
+                                                dataGridView2.Rows.Add(1);
+                                                dataGridView2[0, lin].Value = fill[0];
+                                                dataGridView2[1, lin].Value = fill[2];
+                                                dataGridView2[2, lin].Value = fill[1];
+                                                dataGridView2[3, lin].Value = fill[3];
+                                                dataGridView2[4, lin].Value = fill[4];
+                                                dataGridView2[5, lin].Value = "-";
+                                                dataGridView2[6, lin].Value = "-";
+                                                lin++;
+                                            }
+
 
                                         }
 
@@ -968,12 +1326,8 @@ namespace Gestão_De_requisições
 
             textBox12.Text ="";
             textBox11.Text ="";
-
-
-
-
-
-
+            maskedTextBox1.Text = "";
+            comboBox3.SelectedItem = null;
         }
 
 
@@ -1012,6 +1366,7 @@ namespace Gestão_De_requisições
             File.Delete(objectos);
 
             sw = File.CreateText(objectos);
+            sw.Close();
 
             sr = File.OpenText(apoio);
             while ((linha = sr.ReadLine()) != null)
@@ -1024,9 +1379,9 @@ namespace Gestão_De_requisições
 
             File.Delete(apoio);
 
-            textBox12.Text = "";
-            textBox11.Text = "";
-            listBox1.SelectedItem = null;
+            textBox5.Text = "";
+            textBox6.Text = "";
+            listBox2.SelectedItem = null;
 
 
             actualizacao_total();
@@ -1071,10 +1426,11 @@ namespace Gestão_De_requisições
                 else
                 {
                     StreamWriter sw = File.AppendText(salas);
-                    sw.Write(adicionar);
+                    sw.WriteLine(adicionar);
                     sw.Close();
                     actualizacao_total();
                     MessageBox.Show("A sala foi adicionada com sucesso", "Sala Adicionada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 }
             }
 
@@ -1103,6 +1459,41 @@ namespace Gestão_De_requisições
             return true;
         }
 
+
+        public bool confexistencia_obj(string texto)
+        {
+            string linha = "";
+            StreamReader sr = File.OpenText(objectos);
+
+
+            while ((linha = sr.ReadLine()) != null)
+            {
+                string[] split = linha.Split(';');
+
+
+
+                if (split[0]==textBox16.Text)
+                {
+                    sr.Close();
+                    return false;
+                }
+                else
+                {
+                    if (texto == linha)
+                    {
+                        sr.Close();
+                        return false;
+                    }
+                }
+            }
+            sr.Close();
+            return true;
+        }
+
+
+
+
+
         private void button8_Click(object sender, EventArgs e)
         {
             panel12.Visible = true;
@@ -1117,6 +1508,219 @@ namespace Gestão_De_requisições
         private void comboBox3_Click(object sender, EventArgs e)
         {
             comboBox3.SelectedItem = null;
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            panel13.Visible = false;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            panel13.Visible = true;
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            string adicionar = textBox16.Text+";"+textBox15.Text;
+            if (textBox15.Text == "" || textBox16.Text == "")
+            {
+                MessageBox.Show("Por favor,preenche o formulário correctamente", "Formulário incompleto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+
+
+                if (confexistencia_obj(adicionar) == false)
+                {
+                    MessageBox.Show("O objeto não pode ser adicionada , pois ela já existe", "Objeto Existente", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    StreamWriter sw = File.AppendText(objectos);
+                    sw.WriteLine(adicionar);
+                    sw.Close();
+                    actualizacao_total();
+                    MessageBox.Show("O objeto foi adicionado com sucesso", "Objeto Adicionado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    sw=File.AppendText(obh);
+                    sw.WriteLine(adicionar);
+                    sw.Close();
+
+
+
+
+                }
+               
+                string pa_cont;
+                cont = 0;
+                if (File.Exists(obh) == true)
+                {
+                    StreamReader sr= File.OpenText(obh);
+                    while ((pa_cont = sr.ReadLine()) != null)
+                    {
+                        cont++;
+                    }
+                    sr.Close();
+
+                }
+
+                iden = cont.ToString();
+                if (cont < 10)
+                {
+
+                    textBox16.Text = "0" + iden;
+                }
+                else
+                {
+                    textBox16.Text = iden;
+                }
+
+            }
+
+        }
+
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int x = 0;//Datagrid linhas
+            string linha = "";
+            dataGridView3.Rows.Clear();
+         
+            StreamReader sr = File.OpenText(conversa);
+
+            while ((linha=sr.ReadLine())!=null)
+            {
+                string[] fill = linha.Split(';'); 
+                if (textBox9.Text =="")
+                {
+                    if (textBox8.Text == "")
+                    {
+                        if (fill.Length >= 6)
+                        {
+                            dataGridView3.Rows.Add(1);
+                            dataGridView3[0, x].Value = fill[0];
+                            dataGridView3[1, x].Value = fill[2];
+                            dataGridView3[2, x].Value = fill[3];
+                            dataGridView3[3, x].Value = fill[5];
+                            x++;
+                        }
+                        else
+                        {
+                            dataGridView3.Rows.Add(1);
+                            dataGridView3[0, x].Value = fill[0];
+                            dataGridView3[1, x].Value = fill[2];
+                            dataGridView3[2, x].Value = fill[3];
+                            dataGridView3[3, x].Value = "-";
+                            x++;
+                        }
+                    }
+                    else if (textBox8.Text != "")
+                    {
+                        if (fill[3] == textBox8.Text)//Receptor
+                        {
+                            if (fill.Length >= 6)
+                            {
+                                dataGridView3.Rows.Add(1);
+                                dataGridView3[0, x].Value = fill[0];
+                                dataGridView3[1, x].Value = fill[2];
+                                dataGridView3[2, x].Value = fill[3];
+                                dataGridView3[3, x].Value = fill[5];
+                                x++;
+                            }
+                            else if (fill.Length < 6)
+                            {
+                                dataGridView3.Rows.Add(1);
+                                dataGridView3[0, x].Value = fill[0];
+                                dataGridView3[1, x].Value = fill[2];
+                                dataGridView3[2, x].Value = fill[3];
+                                dataGridView3[3, x].Value = "-";
+                                x++;
+                            }
+
+
+
+                        }
+                    }
+
+                }
+                else if (textBox9.Text !="")
+                {
+                    if (textBox9.Text==fill[0])
+                    {
+                        if (textBox8.Text== "")
+                        {
+                            if (fill.Length >= 6)
+                            {
+                                dataGridView3.Rows.Add(1);
+                                dataGridView3[0, x].Value = fill[0];
+                                dataGridView3[1, x].Value = fill[2];
+                                dataGridView3[2, x].Value = fill[3];
+                                dataGridView3[3, x].Value = fill[5];
+                                x++;
+                            }
+                            else
+                            {
+                                dataGridView3.Rows.Add(1);
+                                dataGridView3[0, x].Value = fill[0];
+                                dataGridView3[1, x].Value = fill[2];
+                                dataGridView3[2, x].Value = fill[3];
+                                dataGridView3[3, x].Value = "-";
+                                x++;
+                            }
+                        }
+                        else if (textBox8.Text != "")
+                        {
+                            if (fill[3] ==textBox8.Text)//Receptor
+                            {
+                                if (fill.Length>=6)
+                                {
+                                    dataGridView3.Rows.Add(1);
+                                    dataGridView3[0, x].Value = fill[0];
+                                    dataGridView3[1, x].Value = fill[2];
+                                    dataGridView3[2, x].Value = fill[3];
+                                    dataGridView3[3, x].Value = fill[5];
+                                    x++;
+                                }
+                                else if(fill.Length <6)
+                                {
+                                    dataGridView3.Rows.Add(1);
+                                    dataGridView3[0, x].Value = fill[0];
+                                    dataGridView3[1, x].Value = fill[2];
+                                    dataGridView3[2, x].Value = fill[3];
+                                    dataGridView3[3, x].Value = "-";
+                                    x++;
+                                }
+                              
+                                
+
+                            }
+                        }
+                       
+
+                    }
+                }
+            }
+            sr.Close();
+
+            
+          
+            
+           
+        }
+
+        private void textBox9_Click(object sender, EventArgs e)
+        {
+            textBox9.Text = "";
+        }
+
+        private void textBox8_Click(object sender, EventArgs e)
+        {
+            textBox8.Text = "";
         }
     }
 }

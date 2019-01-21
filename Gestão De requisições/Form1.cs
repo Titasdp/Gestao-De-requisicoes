@@ -13,6 +13,7 @@ namespace Gestão_De_requisições
 {
     public partial class Form1 : Form
     {
+        string req_global = @"requniversal.txt";// para o sistema de alerta;
         contas utilizador = new contas();
         string hu = @"histórico de utilizadores.txt";//nome de um ficheiro que guarda info sobre todos os utilizadores que já criaram contas nesta aplicacao  
         string nome = @"utilizadores.txt";// nome do ficheiro dos utilizadores 
@@ -148,7 +149,16 @@ namespace Gestão_De_requisições
         //na nabertura caso o ficheiro de utilizadores nao existir esse cria o ficheiro (nesse projecto ainda so serve para dar um id a pessoa)
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            if ((File.Exists(req_global))==false)
+            {
+                StreamWriter sr = File.CreateText(req_global);
+                sr.Close();
+            }
+            else
+            {
+                StreamReader sw = File.OpenText(req_global);//
+                sw.Close();
+            }
 
             // cria o ficheiro historico de utilizador caso esse nao exisrte
             if ((File.Exists(hu)) == false)//caso nao existir 

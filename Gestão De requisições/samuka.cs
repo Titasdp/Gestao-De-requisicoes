@@ -23,6 +23,8 @@ namespace Gestão_De_requisições
 
 
         //Nome dos ficheiros necessarios 
+        string req_global = @"requniversal.txt";//Ficheiro que se baseia para que o  sistema de alerta de devolucao pendentes  funcione 
+        string backup = @"backup.txt";//ajuda na passagem de informacao para o ficheiro req_global
         string conversa = @"conversa.txt";
         string salas = @"salas.txt";
         string objectos = @"objectos.txt";
@@ -101,6 +103,27 @@ namespace Gestão_De_requisições
 
         private void samuka_Load(object sender, EventArgs e)
         {
+
+            string confpassado = "";
+            int quant=0;
+            StreamReader srconf = File.OpenText(req_global);
+            while ((confpassado=srconf.ReadLine())!=null)
+            {
+                string[] fillc = confpassado.Split(';');
+                if (true)
+                {
+                    if (fillc.Length<7 && fillc[0]==Program.utilname)
+                    {
+                        quant++;
+                    }
+                }
+            }
+            srconf.Close();
+            if (quant>0) 
+            {
+                MessageBox.Show("Existem objetos por devolver. Caso o objeto por devolver seja um objeto que foi requisitado num outro dia faça a devolução num segurança.","Objetos por Devolver",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                MessageBox.Show("Pode-se ver o objeto ou objetos que estão por devolver, no painel de Objetos por 'devolver'", "Visualizar Objetos por Devolver", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
 
             add_pordev();//Adiciona os elementos que nao foram devolvidos que deveram ser devolvidos 
@@ -341,6 +364,52 @@ namespace Gestão_De_requisições
 
                 File.Delete(apoio);//elimina o ficheiro de apoio 
 
+
+
+                //Escreve no ficheiro global de requisicao 
+                sr = File.OpenText(req_global);
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    //ESCREVE NO OURTO FICHEIRO
+                    StreamWriter sw2 = File.AppendText(backup);
+
+                    if (linha == linhaglobal)//caso a linha encontrada for igual a linha escrita no formulario de requisicao 
+                    {
+                        sw2.WriteLine(linha3);//passa para o outro ficheiro a linha2 sendo que impede com que a linha seja escrita sm data e hora
+                        sw2.Close();
+                    }
+                    else
+                    {
+                        sw2.WriteLine(linha);//caso nao for encontrada algo igual ele escreve a linha como esta escrita
+                        sw2.Close();
+                    }
+
+                }
+                sr.Close();
+
+
+                File.Delete(req_global);//Elimina o ficheiro anterior para permitir refazelo do zero 
+                sw3 = File.CreateText(req_global);//Recria o ficheiro para ser tranferido de novo os dados atualizados 
+                sw3.Close();
+
+               
+
+                sr = File.OpenText(backup);
+                while ((linharecr = sr.ReadLine()) != null)
+                {
+                    //Devolve os dados para o ficheiro reconstruido 
+                    StreamWriter sw2 = File.AppendText(req_global);
+                    sw2.WriteLine(linharecr);
+                    sw2.Close();
+
+
+                }
+                sr.Close();
+
+                File.Delete(backup);//elimina o ficheiro de apoio
+
+
+
                 //TODAS A TEXTBOX PASSAM A SER NULO DE VOLTA
                 textBox1.Text = "";
                 textBox8.Text = "";
@@ -392,6 +461,13 @@ namespace Gestão_De_requisições
                     sw.Close();
                 }
 
+                 if (File.Exists(req_global) == true)
+                  {
+                    StreamWriter sw = File.AppendText(req_global);
+                    sw.WriteLine(linhaglobal);
+                    sw.Close();
+                  }
+
 
                 MessageBox.Show("O formulário foi submetido com sucesso", "Formulário Submetido", MessageBoxButtons.OK);
                 permicao = true;
@@ -420,7 +496,7 @@ namespace Gestão_De_requisições
         //funcao actualizadora de chat
         public void actualizarchat()
         {
-
+            listBox1.Items.Clear();
             chat mes = new chat();
 
 
@@ -432,17 +508,23 @@ namespace Gestão_De_requisições
             {
                 string[] fill = linha.Split(';');
 
-                if (fill[3] == Program.utilname && fill.Length < 6 && fill[4]==Program.utilemail)
+                if (fill[3] == Program.utilname && fill.Length <=5 && fill[4]==Program.utilemail)//mensagens de segurança ao docente
                 {
 
                     mes.utilizador = fill[0];
                     mes.conversa = fill[2];
 
 
-                    string linha2 = mes.utilizador + ":" + mes.conversa;
+                    string linha2 = mes.utilizador + ":" + mes.conversa +":"+"---------------"+"Relacionado a:"+" "+fill[5] ;
 
                     listBox1.Items.Add(linha2);
                 }
+                else if(fill.Length<=4 && fill[0]==Program.utilname)
+                {
+                    listBox1.Items.Add("EU"+":"+fill[2]);
+                }
+             
+                
 
             }
             sw.Close();
@@ -462,11 +544,10 @@ namespace Gestão_De_requisições
             {
                 MessageBox.Show("E é necessário  selecionar a mensagem que deseja selecionar", "Visualizar", MessageBoxButtons.OK , MessageBoxIcon.Exclamation);
             }
-            else if (listBox1.SelectedItem.ToString().Contains("Eu"))
+            else if (listBox1.SelectedItem.ToString().Contains("EU"))
             {
-                MessageBox.Show("Não pode responder às suas próprias mensagens", "Escolha Impossível", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("E é necessário  esperar que o problema  levantado, seja resolvido pelos seguranças, para que essa mensagem seja resolvido para que essa menssagem desapareça", "Visualizar Impossível", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-
             else
             {
 
@@ -493,7 +574,7 @@ namespace Gestão_De_requisições
                     {
                         string[] fill = linha.Split(';');
 
-                        if (fill[0] == responder[0] && fill[2] == responder[1] && fill.Length <= 5)
+                        if (fill[0] == responder[0] && fill[2] == responder[1] && fill.Length <= 6)
                         {
                             alterar = linha + ";" + "V"; // Alteracao para submeter para o ficheiro actualizado  
                             comparacao = linha;

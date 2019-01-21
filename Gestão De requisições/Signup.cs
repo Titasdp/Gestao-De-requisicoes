@@ -89,12 +89,11 @@ namespace Gestão_De_requisições
 
                     if ((usernameval(nomeutilizador)!=true))
                     {
-
+                        MessageBox.Show("Esse username já foi escolhido , por favor escolha outro nome para o seu perfil.", "Conta Existente", MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
-
-                    if (emailval(mail)!=true)
+                    else if (emailval(mail)!=true)
                     {
-                        MessageBox.Show("O  email  já contem conta na aplicação ", "Conta Existente", MessageBoxButtons.OK);
+                        MessageBox.Show("O  email  já contem conta na aplicação.", "Conta Existente", MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                     else
                     {
