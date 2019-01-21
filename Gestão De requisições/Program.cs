@@ -10,6 +10,7 @@ namespace Gestão_De_requisições
     {
         public static string utilname;
         public static string utilemail;
+        public static string tipoad; //Ajuda saber no form  samuka se o utilizador é admin ou outro
  
         /// <summary>
         /// The main entry point for the application.

@@ -64,8 +64,7 @@ namespace Gestão_De_requisições
             while ((confpassado = srconf.ReadLine()) != null)
             {
                 string[] fillc = confpassado.Split(';');
-                if (true)
-                {
+                
                     if (fillc.Length < 7)
                     {
 
@@ -80,7 +79,7 @@ namespace Gestão_De_requisições
                         quant++;
                         x++;
                     }
-                }
+                
             }
             srconf.Close();
             if (quant > 0)
@@ -153,11 +152,7 @@ namespace Gestão_De_requisições
 
                     listBox1.Items.Add(linha2);
                 }
-                else if(fill[0]==Program.utilname && fill.Length==6 )
-                {
-                    string linha2 = "EU:" + fill[2] + "-" + "Relacionado a:" + fill[5] + "-enviado por:" + fill[3];
-                    listBox1.Items.Add(linha2);
-                }
+                
 
             }
             sw.Close();
@@ -1498,7 +1493,7 @@ namespace Gestão_De_requisições
 
                 MessageBox.Show("O processo foi completado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
+                dataGridView1.Rows.Clear();
                 int x = 0;
                 string confpassado = "";
                 int quant = 0;
@@ -1506,8 +1501,7 @@ namespace Gestão_De_requisições
                 while ((confpassado = srconf.ReadLine()) != null)
                 {
                     string[] fillc = confpassado.Split(';');
-                    if (true)
-                    {
+                    
                         if (fillc.Length < 7)
                         {
 
@@ -1522,7 +1516,7 @@ namespace Gestão_De_requisições
                             quant++;
                             x++;
                         }
-                    }
+                    
                 }
                 srconf.Close();
                 if (quant==0)
@@ -1552,6 +1546,17 @@ namespace Gestão_De_requisições
         private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            DialogResult resposta=MessageBox.Show("Deseja realmente sair dessa conta?", "LOG OUT",MessageBoxButtons.YesNo,MessageBoxIcon.Exclamation);
+            if (resposta==DialogResult.Yes)
+            {
+                Form f1 = new Form1();
+                f1.Show();
+                this.Hide();
+            }
         }
     }
 }

@@ -112,10 +112,10 @@ namespace Gestão_De_requisições
             while ((confpassado=srconf.ReadLine())!=null)
             {
                 string[] fillc = confpassado.Split(';');
-                if (true)
-                {
+               
                     if (fillc.Length<7 && fillc[0]==Program.utilname)
                     {
+                        dataGridView1.Rows.Add(1);
                         dataGridView1[0, x].Value = fillc[0];
                         dataGridView1[1, x].Value = fillc[2];
                         dataGridView1[2, x].Value = fillc[1];
@@ -123,10 +123,10 @@ namespace Gestão_De_requisições
                         dataGridView1[4, x].Value = fillc[4];
                         dataGridView1[5, x].Value = "-";
                         dataGridView1[6, x].Value = "-";
-
+                        x++;
                         quant++;
                     }
-                }
+                
             }
             srconf.Close();
             if (quant>0) 
@@ -427,8 +427,7 @@ namespace Gestão_De_requisições
                 while ((confpassado = srconf.ReadLine()) != null)
                 {
                     string[] fillc = confpassado.Split(';');
-                    if (true)
-                    {
+                    
                         if (fillc.Length < 7 && fillc[0] == Program.utilname)
                         {
                             dataGridView1[0, x].Value = fillc[0];
@@ -438,10 +437,10 @@ namespace Gestão_De_requisições
                             dataGridView1[4, x].Value = fillc[4];
                             dataGridView1[5, x].Value = "-";
                             dataGridView1[6, x].Value = "-";
-
+                            x++;
                             quant++;
                         }
-                    }
+                    
                 }
                 srconf.Close();
                 if (quant == 0)
@@ -488,70 +487,99 @@ namespace Gestão_De_requisições
 
             if (accept==false)
             {
-                MessageBox.Show("O formulário não foi totalmentre preenchido", "Formulário Incompleto", MessageBoxButtons.OK);
+                MessageBox.Show("O formulário não foi totalmentre preenchido", "Formulário Incompleto", MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
             else
             {
-
+                bool epossivel = true;
+                string confpossivel = "";
                
-
-                                            
-                if (File.Exists(requisicoes) == true)
+                StreamReader srconf1 = File.OpenText(req_global);
+                while ((confpossivel = srconf1.ReadLine()) != null)
                 {
-                    StreamWriter sw = File.AppendText(requisicoes);
-                    sw.WriteLine(linhaglobal);
-                    sw.Close();
-                }
+                    string[] fillc = confpossivel.Split(';');
 
-                 if (File.Exists(req_global) == true)
-                  {
-                    StreamWriter sw = File.AppendText(req_global);
-                    sw.WriteLine(linhaglobal);
-                    sw.Close();
-                  }
-
-
-                MessageBox.Show("O formulário foi submetido com sucesso", "Formulário Submetido", MessageBoxButtons.OK);
-                permicao = true;
-                accept = false;//impede fazer uma nova submicao sem preencher a outra
-
-                //obriga o utilizador a preencher de novo 
-                textBox2.Text = "";
-                textBox3.Text = "";
-                textBox4.Text = "";
-                comboBox1.SelectedItem = null;
-                comboBox2.SelectedItem = null;
-
-                // adicionar elementos a combobox3 a combobox da entrega
-                string []fill =linhaglobal.Split(';');
-                comboBox3.Items.Add(fill[3]+"-"+fill[4]);
-
-
-                dataGridView1.Rows.Clear();
-                string confpassado = "";
-                int x = 0;
-                int quant = 0;
-                StreamReader srconf = File.OpenText(req_global);
-                while ((confpassado = srconf.ReadLine()) != null)
-                {
-                    string[] fillc = confpassado.Split(';');
-                    if (true)
+                    if (fillc.Length < 7)
                     {
-                        if (fillc.Length < 7 && fillc[0] == Program.utilname)
+                        if (fillc[3]==comboBox1.SelectedItem.ToString()&&fillc[4]==comboBox2.SelectedItem.ToString())
                         {
-                            dataGridView1[0, x].Value = fillc[0];
-                            dataGridView1[1, x].Value = fillc[2];
-                            dataGridView1[2, x].Value = fillc[1];
-                            dataGridView1[3, x].Value = fillc[3];
-                            dataGridView1[4, x].Value = fillc[4];
-                            dataGridView1[5, x].Value = "-";
-                            dataGridView1[6, x].Value = "-";
+                            epossivel = false;
+                        }
+                       
+                    }
 
-                            quant++;
+                }
+                srconf1.Close();
+
+
+                if (epossivel == false)
+                {
+                    MessageBox.Show("O  objeto já foi requesitado e ainda não foi devolvido por favor espere que esse seja devolvido ou, escolha outro objeto", "Objeto Em Uso", MessageBoxButtons.OK);
+                }
+                else if (epossivel != false)
+                {
+
+                    if (File.Exists(requisicoes) == true)
+                    {
+                        StreamWriter sw = File.AppendText(requisicoes);
+                        sw.WriteLine(linhaglobal);
+                        sw.Close();
+                    }
+
+                    if (File.Exists(req_global) == true)
+                    {
+                        StreamWriter sw = File.AppendText(req_global);
+                        sw.WriteLine(linhaglobal);
+                        sw.Close();
+                    }
+
+
+                    MessageBox.Show("O formulário foi submetido com sucesso", "Formulário Submetido", MessageBoxButtons.OK);
+                    permicao = true;
+                    accept = false;//impede fazer uma nova submicao sem preencher a outra
+
+                    //obriga o utilizador a preencher de novo 
+                    textBox2.Text = "";
+                    textBox3.Text = "";
+                    textBox4.Text = "";
+                    comboBox1.SelectedItem = null;
+                    comboBox2.SelectedItem = null;
+
+                    // adicionar elementos a combobox3 a combobox da entrega
+                    string[] fill = linhaglobal.Split(';');
+                    comboBox3.Items.Add(fill[3] + "-" + fill[4]);
+
+
+                    dataGridView1.Rows.Clear();
+                    string confpassado = "";
+                    int x = 0;
+                    int quant = 0;
+                    StreamReader srconf = File.OpenText(req_global);
+                    while ((confpassado = srconf.ReadLine()) != null)
+                    {
+                        string[] fillc = confpassado.Split(';');
+                        if (true)
+                        {
+                            if (fillc.Length < 7 && fillc[0] == Program.utilname)
+                            {
+                                dataGridView1[0, x].Value = fillc[0];
+                                dataGridView1[1, x].Value = fillc[2];
+                                dataGridView1[2, x].Value = fillc[1];
+                                dataGridView1[3, x].Value = fillc[3];
+                                dataGridView1[4, x].Value = fillc[4];
+                                dataGridView1[5, x].Value = "-";
+                                dataGridView1[6, x].Value = "-";
+
+                                quant++;
+                            }
                         }
                     }
+                    srconf.Close();
                 }
-                srconf.Close();
+                
+
+
+
 
             }
 
@@ -742,6 +770,27 @@ namespace Gestão_De_requisições
         private void timer1_Tick(object sender, EventArgs e)
         {
             Status1.Text = "Data:" + DateTime.Today.ToString("yyyy-MM-dd") + "     " + "Hora:" + DateTime.Now.ToString("hh:mm:ss");
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            DialogResult resposta = MessageBox.Show("Deseja realmente sair dessa conta?", "LOG OUT", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (resposta == DialogResult.Yes)
+            {
+                if (Program.tipoad=="admin")
+                {
+                    Form f1 = new Adminp2();
+                    f1.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    Form f1 = new Form1();
+                    f1.Show();
+                    this.Hide();
+                }
+               
+            }
         }
     }
     }

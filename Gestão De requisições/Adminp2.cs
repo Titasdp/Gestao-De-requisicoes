@@ -43,7 +43,7 @@ namespace Gestão_De_requisições
         private void Adminp2_Load(object sender, EventArgs e)
         {
             timer1.Enabled = true;
-           
+            dataGridView4.Rows.Clear();
 
             int x = 0;
             string confpassado = "";
@@ -52,8 +52,7 @@ namespace Gestão_De_requisições
             while ((confpassado = srconf.ReadLine()) != null)
             {
                 string[] fillc = confpassado.Split(';');
-                if (true)
-                {
+               
                     if (fillc.Length < 7)
                     {
 
@@ -68,13 +67,13 @@ namespace Gestão_De_requisições
                         quant++;
                         x++;
                     }
-                }
+                
             }
             srconf.Close();
             if (quant > 0)
             {
                 MessageBox.Show("Existem objetos por devolver. ", "Objetos por Devolver", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                MessageBox.Show("Painel de devoluções em atraso ativado.", "Painel ativado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(" Confirme no Painel de devoluções.", "Painel De Devoluções", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             StreamReader sr;
@@ -1786,7 +1785,7 @@ namespace Gestão_De_requisições
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-            if (textBox4.Text == "")
+            if (textBox17.Text == "")
             {
                 MessageBox.Show("Deve escolher o objeto a ser devolvido", "Formulário Incompleto", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -1892,7 +1891,7 @@ namespace Gestão_De_requisições
 
                 MessageBox.Show("O processo foi completado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-
+                dataGridView4.Rows.Clear();
                 int x = 0;
                 string confpassado = "";
                 int quant = 0;
@@ -1900,8 +1899,7 @@ namespace Gestão_De_requisições
                 while ((confpassado = srconf.ReadLine()) != null)
                 {
                     string[] fillc = confpassado.Split(';');
-                    if (true)
-                    {
+                   
                         if (fillc.Length < 7)
                         {
 
@@ -1916,7 +1914,7 @@ namespace Gestão_De_requisições
                             quant++;
                             x++;
                         }
-                    }
+                    
                 }
                 srconf.Close();
                 if (quant == 0)
@@ -1933,6 +1931,38 @@ namespace Gestão_De_requisições
         private void timer1_Tick(object sender, EventArgs e)
         {
             Status1.Text = "Data:" + DateTime.Today.ToString("yyyy-MM-dd") + "     " + "Hora:" + DateTime.Now.ToString("hh:mm:ss");
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            DialogResult resposta = MessageBox.Show("Deseja realmente sair dessa conta?", "LOG OUT", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (resposta == DialogResult.Yes)
+            {
+                Form f1 = new Form1();
+                f1.Show();
+                this.Hide();
+            }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            Program.tipoad = "admin";
+            
+            Form f1 = new samuka();
+            f1.Show();
+            this.Hide();
+        }
+
+        private void dataGridView4_Click(object sender, EventArgs e)
+        {
+            int lin = dataGridView4.CurrentCell.RowIndex;
+
+
+            textBox17.Text = dataGridView4[0, lin].Value.ToString();
+            textBox14.Text = dataGridView4[3, lin].Value.ToString();
+            textBox13.Text = dataGridView4[4, lin].Value.ToString();
+            textBox10.Text = dataGridView4[1, lin].Value.ToString();
+            textBox7.Text = dataGridView4[2, lin].Value.ToString();
         }
     }
 }

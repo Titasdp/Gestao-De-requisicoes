@@ -36,6 +36,7 @@ namespace Gestão_De_requisições
             {
                 MessageBox.Show("Existem Campos do Formulário por completar", "Formulário Incompleto", MessageBoxButtons.OK);
             }
+           
             else
             {
 
@@ -61,6 +62,7 @@ namespace Gestão_De_requisições
                 {
                     MessageBox.Show("Confirme  o tipo de utilizador que esta conta vai ser", "Confirmar o tipo de utilizador", MessageBoxButtons.OK);
                 }
+             
 
                 else
                 {
@@ -105,7 +107,11 @@ namespace Gestão_De_requisições
 
                     if (emailval(mail) != true)
                     {
-                        MessageBox.Show("O  email  já contem conta na aplicação ", "Conta Existente", MessageBoxButtons.OK);
+                        MessageBox.Show("O  email  já contem conta na aplicação ", "Conta Existente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else if (usernameval(nomeutilizador) == false)
+                    {
+                        MessageBox.Show("Esse nome já foi escolhido por um outro utilizador", "Nome de Perfil Indispónivel", MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                     else
                     {
@@ -204,7 +210,7 @@ namespace Gestão_De_requisições
 
 
 
-        /*public bool usernameval(string nomeutilizador)
+        public bool usernameval(string nomeutilizador)
         {
 
             StreamReader sr = File.OpenText(nome);
@@ -236,7 +242,7 @@ namespace Gestão_De_requisições
             }
          
             return true;
-        }*/
+        }
         
         //elemina a posibilidade de ser  atribuida caracteristicas duplas
         private void checkBox2_Click(object sender, EventArgs e)
@@ -247,6 +253,13 @@ namespace Gestão_De_requisições
         private void checkBox1_Click(object sender, EventArgs e)
         {
             checkBox2.Checked = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form f1 = new Adminp2();
+            f1.Show();
+            this.Hide();
         }
     }
 }

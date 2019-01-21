@@ -46,11 +46,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Narrow", 16.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(171, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 33);
+            this.label1.Size = new System.Drawing.Size(177, 35);
             this.label1.TabIndex = 1;
             this.label1.Text = "Sign Up Form";
             // 
@@ -101,11 +101,11 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button1.Font = new System.Drawing.Font("Arial Narrow", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(77, 529);
+            this.button1.Location = new System.Drawing.Point(77, 525);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(357, 34);
+            this.button1.Size = new System.Drawing.Size(357, 42);
             this.button1.TabIndex = 10;
             this.button1.Text = "Criar Conta";
             this.button1.UseVisualStyleBackColor = false;
@@ -113,48 +113,48 @@
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(77, 155);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(357, 27);
+            this.textBox1.Size = new System.Drawing.Size(357, 30);
             this.textBox1.TabIndex = 12;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // textBox2
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(77, 239);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(357, 27);
+            this.textBox2.Size = new System.Drawing.Size(357, 30);
             this.textBox2.TabIndex = 13;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged_1);
             // 
             // textBox3
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox3.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(77, 328);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(357, 27);
+            this.textBox3.Size = new System.Drawing.Size(357, 30);
             this.textBox3.TabIndex = 14;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // textBox4
             // 
-            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox4.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(78, 399);
             this.textBox4.Name = "textBox4";
             this.textBox4.PasswordChar = '*';
-            this.textBox4.Size = new System.Drawing.Size(357, 27);
+            this.textBox4.Size = new System.Drawing.Size(357, 30);
             this.textBox4.TabIndex = 15;
             this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // textBox5
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.Location = new System.Drawing.Point(77, 471);
             this.textBox5.Name = "textBox5";
             this.textBox5.PasswordChar = '*';
-            this.textBox5.Size = new System.Drawing.Size(357, 27);
+            this.textBox5.Size = new System.Drawing.Size(357, 30);
             this.textBox5.TabIndex = 16;
             this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
             // 
@@ -172,14 +172,15 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button2.Font = new System.Drawing.Font("Arial Narrow", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(77, 589);
+            this.button2.Location = new System.Drawing.Point(77, 585);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(357, 34);
+            this.button2.Size = new System.Drawing.Size(357, 42);
             this.button2.TabIndex = 17;
             this.button2.Text = "Retorceder";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Signup
             // 

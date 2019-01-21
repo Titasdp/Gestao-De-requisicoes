@@ -160,6 +160,10 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Status1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
             this.tabPage5.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -193,6 +197,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.panel15.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.panel16.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage5
@@ -1270,6 +1276,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -1440,7 +1447,7 @@
             this.dataGridView4.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1460,6 +1467,7 @@
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.Size = new System.Drawing.Size(720, 470);
             this.dataGridView4.TabIndex = 0;
+            this.dataGridView4.Click += new System.EventHandler(this.dataGridView4_Click);
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -1534,6 +1542,54 @@
             this.Status1.Name = "Status1";
             this.Status1.Size = new System.Drawing.Size(0, 17);
             // 
+            // tabPage6
+            // 
+            this.tabPage6.BackColor = System.Drawing.Color.Black;
+            this.tabPage6.Controls.Add(this.panel16);
+            this.tabPage6.Location = new System.Drawing.Point(4, 33);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(1120, 574);
+            this.tabPage6.TabIndex = 6;
+            this.tabPage6.Text = "Perfil";
+            // 
+            // panel16
+            // 
+            this.panel16.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel16.Controls.Add(this.button16);
+            this.panel16.Controls.Add(this.button15);
+            this.panel16.Location = new System.Drawing.Point(142, 92);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(827, 344);
+            this.panel16.TabIndex = 0;
+            // 
+            // button15
+            // 
+            this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button15.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button15.Location = new System.Drawing.Point(88, 65);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(275, 234);
+            this.button15.TabIndex = 0;
+            this.button15.Text = "Requesitar ";
+            this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button16
+            // 
+            this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button16.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button16.Location = new System.Drawing.Point(464, 65);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(275, 234);
+            this.button16.TabIndex = 1;
+            this.button16.Text = "Log out";
+            this.button16.UseVisualStyleBackColor = false;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
             // Adminp2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1592,6 +1648,8 @@
             this.panel15.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.panel16.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1724,5 +1782,9 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel Status1;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button15;
     }
 }

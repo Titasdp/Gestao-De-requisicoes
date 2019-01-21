@@ -260,5 +260,12 @@ namespace Gestão_De_requisições
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form f1 = new Form1();
+            f1.Show();
+            this.Hide();
+        }
     }
 }
