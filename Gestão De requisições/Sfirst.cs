@@ -17,7 +17,8 @@ namespace Gestão_De_requisições
         string alterar; //alteracoes no file
         string comparacao; // faz a comparacao 
 
-
+        string req_global = @"requniversal.txt";//Ficheiro que se baseia para que o  sistema de alerta de devolucao pendentes  funcione 
+        string backup = @"backup.txt";//ajuda na passagem de informacao para o ficheiro req_global
         string conversa = @"conversa.txt";
         string salas = @"salas.txt";
         string objectos = @"objectos.txt";
@@ -55,6 +56,44 @@ namespace Gestão_De_requisições
         //Ao fazer o log in  transfire todas as mensagens enviadas para os seguranças 
         private void Sfirst_Load(object sender, EventArgs e)
         {
+
+            int x = 0;
+            string confpassado = "";
+            int quant = 0;
+            StreamReader srconf = File.OpenText(req_global);
+            while ((confpassado = srconf.ReadLine()) != null)
+            {
+                string[] fillc = confpassado.Split(';');
+                if (true)
+                {
+                    if (fillc.Length < 7)
+                    {
+
+                        dataGridView1.Rows.Add(1);
+                        dataGridView1[0, x].Value = fillc[0];
+                        dataGridView1[1, x].Value = fillc[2];
+                        dataGridView1[2, x].Value = fillc[1];
+                        dataGridView1[3, x].Value = fillc[3];
+                        dataGridView1[4, x].Value = fillc[4];
+                        dataGridView1[5, x].Value = "-";
+                        dataGridView1[6, x].Value = "-";
+                        quant++;
+                        x++;
+                    }
+                }
+            }
+            srconf.Close();
+            if (quant > 0)
+            {
+                MessageBox.Show("Existem objetos por devolver. ", "Objetos por Devolver", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Painel de devoluções em atraso ativado.", "Painel ativado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+
+
+
+
+
 
             actualizarchat();//Chama a funcao que acrescenta as mensagens direcionadas aos seguranças na listbox 
 
@@ -1313,6 +1352,190 @@ namespace Gestão_De_requisições
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            int lin = dataGridView1.CurrentCell.RowIndex;
+
+
+            textBox4.Text = dataGridView1[0, lin].Value.ToString();
+            textBox5.Text = dataGridView1[3, lin].Value.ToString();
+            textBox6.Text = dataGridView1[4, lin].Value.ToString();
+            textBox7.Text = dataGridView1[1, lin].Value.ToString();
+            textBox8.Text = dataGridView1[2, lin].Value.ToString();
+
+
+        }
+
+        private void textBox4_Click(object sender, EventArgs e)
+        {
+            textBox4.Text = "";
+        }
+
+        private void textBox5_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textBox6_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void textBox7_Click(object sender, EventArgs e)
+        {
+         
+        }
+
+        //Devolver os que nao tinham sido devolvidos 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (textBox4.Text=="")
+            {
+                MessageBox.Show("Deve escolher o objeto a ser devolvido", "Formulário Incompleto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                string dia = "R_" + textBox7.Text + ".txt";
+                string cmp = textBox4.Text + ";" + textBox8.Text + ";" + textBox7.Text + ";" + textBox5.Text + ";" + textBox6.Text;
+                string alterado = textBox4.Text + ";" + textBox8.Text + ";" + textBox7.Text + ";" + textBox5.Text + ";" + textBox6.Text + ";" + DateTime.Now.ToString("hh:mm:ss") + ";" + DateTime.Today.ToString("yyyy-MM-dd");
+
+
+
+                StreamWriter sw = File.CreateText(apoio);
+                sw.Close();
+
+
+                string linha;
+                StreamReader sr;
+                sr = File.OpenText(dia);
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    //ESCREVE NO OURTO FICHEIRO
+                    StreamWriter sw2 = File.AppendText(apoio);
+
+                    if (linha == cmp)//caso a linha encontrada for igual a linha escrita no formulario de requisicao 
+                    {
+                        sw2.WriteLine(alterado);//passa para o outro ficheiro a linha2 sendo que impede com que a linha seja escrita sm data e hora
+                        sw2.Close();
+                    }
+                    else
+                    {
+                        sw2.WriteLine(linha);//caso nao for encontrada algo igual ele escreve a linha como esta escrita
+                        sw2.Close();
+                    }
+
+                }
+                sr.Close();
+
+
+                File.Delete(dia);//Elimina o ficheiro anterior para permitir refazelo do zero 
+                StreamWriter sw3 = File.CreateText(dia);//Recria o ficheiro para ser tranferido de novo os dados atualizados 
+                sw3.Close();
+
+                string linharecr;//escreve de novo no ficheiro 
+
+                sr = File.OpenText(apoio);
+                while ((linharecr = sr.ReadLine()) != null)
+                {
+                    //Devolve os dados para o ficheiro reconstruido 
+                    StreamWriter sw2 = File.AppendText(dia);
+                    sw2.WriteLine(linharecr);
+                    sw2.Close();
+
+
+                }
+                sr.Close();
+
+                File.Delete(apoio);//elimina o ficheiro de apoio 
+
+
+
+                //Escreve no ficheiro global de requisicao 
+                sr = File.OpenText(req_global);
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    //ESCREVE NO OURTO FICHEIRO
+                    StreamWriter sw2 = File.AppendText(backup);
+
+                    if (linha == cmp)//caso a linha encontrada for igual a linha escrita no formulario de requisicao 
+                    {
+                        sw2.WriteLine(alterado);//passa para o outro ficheiro a linha2 sendo que impede com que a linha seja escrita sm data e hora
+                        sw2.Close();
+                    }
+                    else
+                    {
+                        sw2.WriteLine(linha);//caso nao for encontrada algo igual ele escreve a linha como esta escrita
+                        sw2.Close();
+                    }
+
+                }
+                sr.Close();
+
+
+                File.Delete(req_global);//Elimina o ficheiro anterior para permitir refazelo do zero 
+                sw3 = File.CreateText(req_global);//Recria o ficheiro para ser tranferido de novo os dados atualizados 
+                sw3.Close();
+
+
+
+                sr = File.OpenText(backup);
+                while ((linharecr = sr.ReadLine()) != null)
+                {
+                    //Devolve os dados para o ficheiro reconstruido 
+                    StreamWriter sw2 = File.AppendText(req_global);
+                    sw2.WriteLine(linharecr);
+                    sw2.Close();
+
+
+                }
+                sr.Close();
+
+                File.Delete(backup);//elimina o ficheiro de apoio
+
+
+                MessageBox.Show("O processo foi completado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                int x = 0;
+                string confpassado = "";
+                int quant = 0;
+                StreamReader srconf = File.OpenText(req_global);
+                while ((confpassado = srconf.ReadLine()) != null)
+                {
+                    string[] fillc = confpassado.Split(';');
+                    if (true)
+                    {
+                        if (fillc.Length < 7)
+                        {
+
+                            dataGridView1.Rows.Add(1);
+                            dataGridView1[0, x].Value = fillc[0];
+                            dataGridView1[1, x].Value = fillc[2];
+                            dataGridView1[2, x].Value = fillc[1];
+                            dataGridView1[3, x].Value = fillc[3];
+                            dataGridView1[4, x].Value = fillc[4];
+                            dataGridView1[5, x].Value = "-";
+                            dataGridView1[6, x].Value = "-";
+                            quant++;
+                            x++;
+                        }
+                    }
+                }
+                srconf.Close();
+                if (quant==0)
+                {
+                    MessageBox.Show("Todos os objetos já foram devolvidos. ", "Todo o Máterial foi devolvido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    
+                }
+
+
+
+            }
+
+           
 
         }
     }

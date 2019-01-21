@@ -103,7 +103,7 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.button1.Font = new System.Drawing.Font("Arial Narrow", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(77, 564);
+            this.button1.Location = new System.Drawing.Point(77, 529);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(357, 34);
             this.button1.TabIndex = 10;
@@ -171,12 +171,15 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(444, 22);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button2.Font = new System.Drawing.Font("Arial Narrow", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(77, 589);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 47);
+            this.button2.Size = new System.Drawing.Size(357, 34);
             this.button2.TabIndex = 17;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Text = "Retorceder";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // Signup
             // 

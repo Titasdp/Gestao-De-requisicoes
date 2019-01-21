@@ -103,8 +103,9 @@ namespace Gestão_De_requisições
 
         private void samuka_Load(object sender, EventArgs e)
         {
-
+            dataGridView1.Rows.Clear();
             string confpassado = "";
+            int x = 0;
             int quant=0;
             StreamReader srconf = File.OpenText(req_global);
             while ((confpassado=srconf.ReadLine())!=null)
@@ -114,6 +115,14 @@ namespace Gestão_De_requisições
                 {
                     if (fillc.Length<7 && fillc[0]==Program.utilname)
                     {
+                        dataGridView1[0, x].Value = fillc[0];
+                        dataGridView1[1, x].Value = fillc[2];
+                        dataGridView1[2, x].Value = fillc[1];
+                        dataGridView1[3, x].Value = fillc[3];
+                        dataGridView1[4, x].Value = fillc[4];
+                        dataGridView1[5, x].Value = "-";
+                        dataGridView1[6, x].Value = "-";
+
                         quant++;
                     }
                 }
@@ -313,7 +322,7 @@ namespace Gestão_De_requisições
 
             if (permicao2 == false)
             {
-                MessageBox.Show("O formulário de devolucão deve ser preenchido neste caso ", "Requisitar", MessageBoxButtons.OK);
+                MessageBox.Show("O formulário de devolucão deve ser preenchido neste caso ", "Devolução", MessageBoxButtons.OK);
             }
             else
             {
@@ -409,6 +418,38 @@ namespace Gestão_De_requisições
                 File.Delete(backup);//elimina o ficheiro de apoio
 
 
+                dataGridView1.Rows.Clear();
+                string confpassado = "";
+                int x = 0;
+                int quant = 0;
+                StreamReader srconf = File.OpenText(req_global);
+                while ((confpassado = srconf.ReadLine()) != null)
+                {
+                    string[] fillc = confpassado.Split(';');
+                    if (true)
+                    {
+                        if (fillc.Length < 7 && fillc[0] == Program.utilname)
+                        {
+                            dataGridView1[0, x].Value = fillc[0];
+                            dataGridView1[1, x].Value = fillc[2];
+                            dataGridView1[2, x].Value = fillc[1];
+                            dataGridView1[3, x].Value = fillc[3];
+                            dataGridView1[4, x].Value = fillc[4];
+                            dataGridView1[5, x].Value = "-";
+                            dataGridView1[6, x].Value = "-";
+
+                            quant++;
+                        }
+                    }
+                }
+                srconf.Close();
+                if (quant == 0)
+                {
+                    MessageBox.Show("Todos os objetos foram devolvidos com sucesso.", "Objetos  Devolvidos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    
+                }
+
+
 
                 //TODAS A TEXTBOX PASSAM A SER NULO DE VOLTA
                 textBox1.Text = "";
@@ -483,6 +524,34 @@ namespace Gestão_De_requisições
                 // adicionar elementos a combobox3 a combobox da entrega
                 string []fill =linhaglobal.Split(';');
                 comboBox3.Items.Add(fill[3]+"-"+fill[4]);
+
+
+                dataGridView1.Rows.Clear();
+                string confpassado = "";
+                int x = 0;
+                int quant = 0;
+                StreamReader srconf = File.OpenText(req_global);
+                while ((confpassado = srconf.ReadLine()) != null)
+                {
+                    string[] fillc = confpassado.Split(';');
+                    if (true)
+                    {
+                        if (fillc.Length < 7 && fillc[0] == Program.utilname)
+                        {
+                            dataGridView1[0, x].Value = fillc[0];
+                            dataGridView1[1, x].Value = fillc[2];
+                            dataGridView1[2, x].Value = fillc[1];
+                            dataGridView1[3, x].Value = fillc[3];
+                            dataGridView1[4, x].Value = fillc[4];
+                            dataGridView1[5, x].Value = "-";
+                            dataGridView1[6, x].Value = "-";
+
+                            quant++;
+                        }
+                    }
+                }
+                srconf.Close();
+
             }
 
         }
