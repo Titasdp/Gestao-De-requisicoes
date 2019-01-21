@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.panel13 = new System.Windows.Forms.Panel();
             this.textBox16 = new System.Windows.Forms.TextBox();
@@ -72,7 +72,6 @@
             this.listBox3 = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -111,14 +110,12 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusStrip3 = new System.Windows.Forms.StatusStrip();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button6 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -160,6 +157,9 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel15 = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Status1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabPage5.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -192,6 +192,7 @@
             this.panel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.panel15.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage5
@@ -610,7 +611,6 @@
             // 
             this.tabPage3.BackColor = System.Drawing.Color.Black;
             this.tabPage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage3.Controls.Add(this.statusStrip2);
             this.tabPage3.Controls.Add(this.panel3);
             this.tabPage3.Controls.Add(this.panel4);
             this.tabPage3.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -620,15 +620,6 @@
             this.tabPage3.Size = new System.Drawing.Size(1120, 574);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Consultar Hístórico De Requisições ";
-            // 
-            // statusStrip2
-            // 
-            this.statusStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip2.Location = new System.Drawing.Point(3, 547);
-            this.statusStrip2.Name = "statusStrip2";
-            this.statusStrip2.Size = new System.Drawing.Size(1112, 22);
-            this.statusStrip2.TabIndex = 2;
-            this.statusStrip2.Text = "statusStrip2";
             // 
             // panel3
             // 
@@ -888,7 +879,6 @@
             this.tabPage2.BackColor = System.Drawing.Color.Black;
             this.tabPage2.Controls.Add(this.panel6);
             this.tabPage2.Controls.Add(this.panel5);
-            this.tabPage2.Controls.Add(this.statusStrip3);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(4, 33);
             this.tabPage2.Name = "tabPage2";
@@ -1017,21 +1007,11 @@
             this.Column12.Name = "Column12";
             this.Column12.Width = 200;
             // 
-            // statusStrip3
-            // 
-            this.statusStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip3.Location = new System.Drawing.Point(3, 549);
-            this.statusStrip3.Name = "statusStrip3";
-            this.statusStrip3.Size = new System.Drawing.Size(1114, 22);
-            this.statusStrip3.TabIndex = 0;
-            this.statusStrip3.Text = "statusStrip3";
-            // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Black;
             this.tabPage1.Controls.Add(this.panel15);
             this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.statusStrip1);
             this.tabPage1.Controls.Add(this.panel2);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1098,15 +1078,6 @@
             this.button2.Text = "Eliminar ";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Location = new System.Drawing.Point(3, 549);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1114, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // panel2
             // 
@@ -1542,11 +1513,33 @@
             this.panel15.Size = new System.Drawing.Size(279, 231);
             this.panel15.TabIndex = 6;
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Status1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 589);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1128, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // Status1
+            // 
+            this.Status1.Name = "Status1";
+            this.Status1.Size = new System.Drawing.Size(0, 17);
+            // 
             // Adminp2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1128, 611);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Name = "Adminp2";
             this.Text = "Adminp2";
@@ -1563,7 +1556,6 @@
             this.panel9.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.panel4.ResumeLayout(false);
@@ -1577,13 +1569,11 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -1600,15 +1590,16 @@
             this.panel14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.panel15.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.StatusStrip statusStrip2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
@@ -1639,13 +1630,11 @@
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.StatusStrip statusStrip3;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
@@ -1732,5 +1721,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.ToolStripStatusLabel Status1;
     }
 }

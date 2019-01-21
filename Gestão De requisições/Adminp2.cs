@@ -42,8 +42,8 @@ namespace Gestão_De_requisições
 
         private void Adminp2_Load(object sender, EventArgs e)
         {
-
-
+            timer1.Enabled = true;
+           
 
             int x = 0;
             string confpassado = "";
@@ -1928,6 +1928,11 @@ namespace Gestão_De_requisições
 
 
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Status1.Text = "Data:" + DateTime.Today.ToString("yyyy-MM-dd") + "     " + "Hora:" + DateTime.Now.ToString("hh:mm:ss");
         }
     }
 }

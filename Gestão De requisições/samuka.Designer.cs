@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -86,6 +87,10 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.Status1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -94,10 +99,13 @@
             this.tabPage4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -180,38 +188,39 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.button4);
-            this.tabPage2.Controls.Add(this.button1);
-            this.tabPage2.Controls.Add(this.groupBox2);
-            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.BackColor = System.Drawing.Color.Black;
+            this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Size = new System.Drawing.Size(1120, 555);
             this.tabPage2.TabIndex = 0;
-            this.tabPage2.Text = "Requesitar";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Text = "Requisitar";
             // 
             // button4
             // 
-            this.button4.Font = new System.Drawing.Font("Arial Narrow", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(570, 166);
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button4.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(54, 189);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(179, 56);
+            this.button4.Size = new System.Drawing.Size(261, 70);
             this.button4.TabIndex = 26;
             this.button4.Text = "Submeter Formulário ";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Arial Narrow", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(570, 52);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.button1.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(54, 85);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(179, 85);
+            this.button1.Size = new System.Drawing.Size(261, 70);
             this.button1.TabIndex = 25;
             this.button1.Text = "Preencher";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
@@ -226,29 +235,28 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.textBox3);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(18, 52);
+            this.groupBox2.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(19, 62);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(529, 326);
+            this.groupBox2.Size = new System.Drawing.Size(529, 395);
             this.groupBox2.TabIndex = 24;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Aquisição";
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(151, 285);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(291, 30);
+            this.comboBox2.Size = new System.Drawing.Size(300, 32);
             this.comboBox2.TabIndex = 22;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial Narrow", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 31);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 23);
+            this.label4.Size = new System.Drawing.Size(64, 24);
             this.label4.TabIndex = 0;
             this.label4.Text = "Name :";
             // 
@@ -257,84 +265,85 @@
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(78, 222);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(364, 30);
+            this.comboBox1.Size = new System.Drawing.Size(373, 32);
             this.comboBox1.TabIndex = 21;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial Narrow", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(10, 285);
+            this.label8.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 288);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(140, 23);
+            this.label8.Size = new System.Drawing.Size(145, 24);
             this.label8.TabIndex = 4;
             this.label8.Text = "Tipo De Objecto :";
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(78, 27);
+            this.textBox2.Location = new System.Drawing.Point(78, 29);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(364, 27);
+            this.textBox2.Size = new System.Drawing.Size(373, 27);
             this.textBox2.TabIndex = 5;
             // 
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(78, 158);
+            this.textBox4.Location = new System.Drawing.Point(78, 160);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(364, 27);
+            this.textBox4.Size = new System.Drawing.Size(373, 27);
             this.textBox4.TabIndex = 16;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial Narrow", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(10, 96);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 23);
+            this.label5.Size = new System.Drawing.Size(55, 24);
             this.label5.TabIndex = 1;
             this.label5.Text = "Data :";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial Narrow", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(10, 223);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(51, 23);
+            this.label7.Size = new System.Drawing.Size(53, 24);
             this.label7.TabIndex = 3;
             this.label7.Text = "Sala :";
             // 
             // textBox3
             // 
             this.textBox3.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(78, 92);
+            this.textBox3.Location = new System.Drawing.Point(78, 95);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(364, 27);
+            this.textBox3.Size = new System.Drawing.Size(373, 27);
             this.textBox3.TabIndex = 15;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Narrow", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(10, 162);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 23);
+            this.label6.Size = new System.Drawing.Size(57, 24);
             this.label6.TabIndex = 2;
             this.label6.Text = "Hora :";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(207, 14);
+            this.label3.Font = new System.Drawing.Font("Arial Narrow", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(354, 12);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(239, 29);
+            this.label3.Size = new System.Drawing.Size(324, 35);
             this.label3.TabIndex = 0;
             this.label3.Text = "Formulário De Requisição";
             // 
@@ -368,7 +377,6 @@
             this.groupBox3.Size = new System.Drawing.Size(508, 358);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Aquisição";
             // 
             // textBox11
             // 
@@ -568,6 +576,8 @@
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Status1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 589);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1128, 22);
@@ -599,6 +609,7 @@
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.Black;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Controls.Add(this.panel1);
             this.panel5.Location = new System.Drawing.Point(-4, 0);
@@ -608,14 +619,14 @@
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Narrow", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -675,12 +686,45 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(64, 25);
+            this.panel1.Location = new System.Drawing.Point(64, 21);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(996, 496);
+            this.panel1.Size = new System.Drawing.Size(995, 500);
             this.panel1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.groupBox2);
+            this.panel2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel2.Location = new System.Drawing.Point(61, 31);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(997, 490);
+            this.panel2.TabIndex = 27;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.button4);
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Location = new System.Drawing.Point(581, 71);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(366, 386);
+            this.panel3.TabIndex = 27;
+            // 
+            // Status1
+            // 
+            this.Status1.Name = "Status1";
+            this.Status1.Size = new System.Drawing.Size(0, 17);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // samuka
             // 
@@ -698,7 +742,6 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -706,10 +749,15 @@
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.tabPage5.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -774,5 +822,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ToolStripStatusLabel Status1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

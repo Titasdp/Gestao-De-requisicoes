@@ -56,7 +56,7 @@ namespace Gestão_De_requisições
         //Ao fazer o log in  transfire todas as mensagens enviadas para os seguranças 
         private void Sfirst_Load(object sender, EventArgs e)
         {
-
+            timer1.Enabled = true;
             int x = 0;
             string confpassado = "";
             int quant = 0;
@@ -1536,6 +1536,21 @@ namespace Gestão_De_requisições
             }
 
            
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+           Status1.Text = "Data:" + DateTime.Today.ToString("yyyy-MM-dd") +"     "+ "Hora:" + DateTime.Now.ToString("hh:mm:ss");
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
         }
     }

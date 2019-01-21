@@ -103,6 +103,7 @@ namespace Gestão_De_requisições
 
         private void samuka_Load(object sender, EventArgs e)
         {
+            timer1.Enabled = true;
             dataGridView1.Rows.Clear();
             string confpassado = "";
             int x = 0;
@@ -736,6 +737,11 @@ namespace Gestão_De_requisições
 
 
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Status1.Text = "Data:" + DateTime.Today.ToString("yyyy-MM-dd") + "     " + "Hora:" + DateTime.Now.ToString("hh:mm:ss");
         }
     }
     }
