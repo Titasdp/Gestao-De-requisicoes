@@ -219,6 +219,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Name = "CriarcontaAdminandSec";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CriarcontaAdminandSec";
             this.ResumeLayout(false);
             this.PerformLayout();

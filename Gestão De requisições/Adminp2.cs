@@ -1791,7 +1791,7 @@ namespace Gestão_De_requisições
             }
             else
             {
-                string dia = "R_" + textBox17.Text + ".txt";
+                string dia = "R_" + textBox10.Text + ".txt";
                 string cmp = textBox17.Text + ";" + textBox7.Text + ";" + textBox10.Text + ";" + textBox14.Text + ";" + textBox13.Text;
                 string alterado = textBox17.Text + ";" + textBox7.Text + ";" + textBox10.Text + ";" + textBox14.Text + ";" + textBox13.Text + ";" + DateTime.Now.ToString("hh:mm:ss") + ";" + DateTime.Today.ToString("yyyy-MM-dd");
 

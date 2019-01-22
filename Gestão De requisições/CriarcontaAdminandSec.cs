@@ -240,6 +240,7 @@ namespace Gestão_De_requisições
 
 
             }
+            sr.Close();
          
             return true;
         }

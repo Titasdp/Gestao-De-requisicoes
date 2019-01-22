@@ -45,7 +45,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(177, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(171, 40);
+            this.label1.Size = new System.Drawing.Size(170, 40);
             this.label1.TabIndex = 0;
             this.label1.Text = "Login Form";
             // 
@@ -142,6 +142,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Log In ";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

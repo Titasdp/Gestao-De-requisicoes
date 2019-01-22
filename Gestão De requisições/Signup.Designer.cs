@@ -202,7 +202,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Name = "Signup";
-            this.Text = "Sign up";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Signup_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
